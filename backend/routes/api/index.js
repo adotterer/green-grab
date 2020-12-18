@@ -6,6 +6,11 @@ router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 
+/*********** TEST FRONTEND /API/TEST POST ROUTE *************/
+router.post("/test", function (req, res) {
+  res.json({ requestBody: req.body });
+});
+
 /*********** TEST USER AUTH COOKIE *************/
 // const { setTokenCookie } = require("../../utils/auth.js");
 // const { User } = require("../../db/models");
