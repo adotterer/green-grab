@@ -9,7 +9,7 @@
 
   <p align="center">
     <br />
-    <a href=""><strong>Wiki [ADD LINK] »</strong></a>
+    <a href="https://github.com/adotterer/green-grab/wiki"><strong>Wiki »</strong></a>
     <br />
     <br />
     <a href="">View Demo [ADD LINK]</a>

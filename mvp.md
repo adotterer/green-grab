@@ -8,13 +8,9 @@
 
 ## Sell / Add item
 
-- Add item
-- Add images
-- Select thumbnail for home page and search page
+- CRUD item, images, description, price, categories
+- Select thumbnail "main image" for home page and search page
   - Default is first image
-- Add categories
-- Add price
-- Add description
 
 ## Buy
 
