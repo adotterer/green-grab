@@ -102,7 +102,132 @@
 </table>
 <br />
 
-- <code>sellerId</code> references <code>User</code>
-- <code>buyerId</code> references <code>User</code>
+- <code>sellerId</code> references <code>Users</code>
+- <code>buyerId</code> references <code>Users</code>
 
 <br />
+
+# Categories
+
+<table role="table">
+  <thead>
+    <tr>
+      <th>column name</th>
+      <th>data type</th>
+      <th>details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>integer serial</td>
+      <td>not null, primary key</td>
+    </tr>
+      <tr>
+        <td><code>categoryName</code></td>
+        <td>string</td>
+        <td>not null, unique</td>
+      </tr>
+  </tbody>
+</table>
+<br />
+
+# Categories-Items Join
+
+<table role="table">
+  <thead>
+    <tr>
+      <th>column name</th>
+      <th>data type</th>
+      <th>details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>integer serial</td>
+      <td>not null, primary key</td>
+    </tr>
+      <tr>
+        <td><code>categoryId</code></td>
+        <td>integer</td>
+        <td>not null</td>
+      </tr>
+      <tr>
+        <td><code>itemId</code></td>
+        <td>integer</td>
+        <td>not null</td>
+      </tr>
+  </tbody>
+</table>
+<br />
+
+- <code>categoryId</code> references <code>Categories</code>
+- <code>itemId</code> references <code>Items</code>
+
+<br />
+
+# Images
+
+<table role="table">
+  <thead>
+    <tr>
+      <th>column name</th>
+      <th>data type</th>
+      <th>details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>integer serial</td>
+      <td>not null, primary key</td>
+    </tr>
+    <tr>
+      <td><code>URL</code></td>
+      <td>string</td>
+      <td>not null, unique</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+# Items-Images Join
+
+<table role="table">
+  <thead>
+    <tr>
+      <th>column name</th>
+      <th>data type</th>
+      <th>details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td>integer serial</td>
+      <td>not null, primary key</td>
+    </tr>
+    <tr>
+      <td><code>itemId</code></td>
+      <td>integer</td>
+      <td>not null</td>
+    </tr>
+    <tr>
+      <td><code>imageId</code></td>
+      <td>integer</td>
+      <td>not null</td>
+    </tr>
+    <tr>
+      <td><code>primaryImageId</code></td>
+      <td>integer</td>
+      <td>not null</td>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+- <code>itemId</code> references <code>Items</code>
+- <code>imageId</code> references <code>Images</code>
+- <code>primaryImageId</code> references <code>Images</code>
+  - thumbnail on main page
