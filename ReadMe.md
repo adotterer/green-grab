@@ -5,7 +5,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h1 align="center">Green Grow</h3>
+  <h1 align="center">GreenGrab</h3>
 
   <p align="center">
     <br />
@@ -44,7 +44,7 @@
 
 ## About The Project
 
-Based on [OfferUp](https://offerup.com/), this app connects users looking for plants, or looking to get rid of plants. Anything green goes!— plants, cuttings, fruits, and veggies are shown based on the location you search in.
+Based on [OfferUp](https://offerup.com/), this app connects plant-enthusiasts looking for plants, or looking to get rid of plants. Anything green goes!— plants, cuttings, fruits, and veggies are shown based on the location you search in.
 
 ### Built With
 
