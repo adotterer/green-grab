@@ -44,7 +44,7 @@
 
 ## About The Project
 
-Based on [OfferUp](https://offerup.com/), this app connects plant-enthusiasts looking for plants, or looking to get rid of plants. Anything green goes!— plants, cuttings, fruits, and veggies are shown based on the location you search in.
+Based on [OfferUp](https://offerup.com/), this app connects plant-enthusiasts looking for plants, or looking to get rid of them. Anything green goes!— plants, cuttings, fruits, and veggies are shown based on the location you search in.
 
 ### Built With
 
@@ -74,7 +74,7 @@ This is an example of how to list things you need to use the software and how to
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/adotterer/green-grab.git
    ```
 3. Install NPM packages
    ```sh
@@ -103,4 +103,4 @@ Contributions are what make the open source community such an amazing place to b
 
 Andrew Dotterer - adotterer@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/adotterer/green-grab](https://github.com/adotterer/green-grab)
