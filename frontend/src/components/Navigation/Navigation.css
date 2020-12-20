@@ -32,7 +32,7 @@
 #div__logo > h2 {
   color: white;
   font-size: 1.9em;
-  font-family: "Luckiest Guy", cursive;
+  font-family: "Skranji", cursive;
 }
 
 #div__search {
@@ -45,10 +45,6 @@
   font-size: 1.15em;
   color: white;
   align-self: center;
-
-  /* background-color: #028b69;
-  border: solid 10px #028b69; */
-  /* border-radius: 10px 0 0 10px; top-left | top-right | bottom-right | bottom-left */
 }
 
 #div__search input::placeholder,
