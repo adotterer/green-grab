@@ -20,14 +20,25 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div id="div__nav-bar">
+      <div id="div__logo">
+        <h2>GreenGrab</h2>
+      </div>
+      <div id="div__search">
+        <input class="input__search" type="text" placeholder="Search..." />
+        <input class="input__location" type="text" placeholder="Location" />
+      </div>
+      <div id="div__nav-links">
+        <ul>
+          <li>
+            <NavLink exact to="/">
+              Home
+            </NavLink>
+            {isLoaded && sessionLinks}
+          </li>
+        </ul>
+      </div>
+    </div>
   );
 }
 

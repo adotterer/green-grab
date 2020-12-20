@@ -1,0 +1,109 @@
+#div__nav-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #00ab80, #00a980 50%, #026d6d);
+  background-image: linear-gradient(
+    90deg,
+    rgb(0, 171, 128),
+    rgb(0, 169, 128) 50%,
+    rgb(2, 109, 109)
+  );
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+}
+
+#div__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0.2;
+}
+
+#div__logo > h2 {
+  color: white;
+  font-size: 1.9em;
+  font-family: "Luckiest Guy", cursive;
+}
+
+#div__search {
+  display: flex;
+  justify-content: center;
+  flex-grow: 0.5;
+}
+
+#div__search input {
+  font-size: 1.15em;
+  color: white;
+  align-self: center;
+
+  /* background-color: #028b69;
+  border: solid 10px #028b69; */
+  /* border-radius: 10px 0 0 10px; top-left | top-right | bottom-right | bottom-left */
+}
+
+#div__search input::placeholder,
+#div__search input::-ms-input-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: white;
+}
+
+#div__search input:focus {
+  outline: none;
+}
+
+.input__search {
+  flex-grow: 0.3;
+  background-color: rgba(27, 129, 102, 0.7);
+  border: solid 9px rgba(27, 129, 102, 0.7);
+  border-radius: 10px 0 0 10px;
+  margin-right: 10px;
+}
+
+.input__location {
+  flex-grow: 0.1;
+  background-color: rgba(27, 129, 102);
+  border: solid 9px rgba(27, 129, 102);
+  border-radius: 0 10px 10px 0;
+}
+
+#div__nav-links {
+  flex-grow: 0.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Lato, sans-serif;
+}
+
+#div__nav-links ul {
+  list-style-type: none;
+  width: 100%;
+}
+
+#div__nav-links li {
+  display: flex;
+  justify-content: space-around;
+  :none ;
+}
+
+#div__nav-links a {
+  text-decoration: none;
+  font-family: Lato, sans-serif;
+  color: white;
+  font-weight: 900;
+  font-size: 1.4em;
+}
