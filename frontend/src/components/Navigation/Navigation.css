@@ -68,16 +68,16 @@
 
 .input__search {
   flex-grow: 0.3;
-  background-color: rgba(27, 129, 102, 0.7);
-  border: solid 9px rgba(27, 129, 102, 0.7);
+  background-color: rgba(27, 129, 102, 0.9);
+  border: solid 9px rgb(27, 129, 102);
   border-radius: 10px 0 0 10px;
   margin-right: 10px;
 }
 
 .input__location {
   flex-grow: 0.1;
-  background-color: rgba(27, 129, 102);
-  border: solid 9px rgba(27, 129, 102);
+  background-color: rgba(27, 129, 102, 0.9);
+  border: solid 9px rgb(27, 129, 102);
   border-radius: 0 10px 10px 0;
 }
 
