@@ -26,29 +26,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-grow: 0.2;
+  flex-grow: 0.3;
 }
 
 #div__logo > h2 {
   color: white;
   font-size: 1.9em;
-  font-family: "Luckiest Guy", cursive;
+  font-family: "Skranji", cursive;
 }
 
 #div__search {
   display: flex;
-  justify-content: center;
-  flex-grow: 0.5;
+  justify-content: flex-end;
+  flex-grow: 0.4;
 }
 
 #div__search input {
   font-size: 1.15em;
   color: white;
   align-self: center;
-
-  /* background-color: #028b69;
-  border: solid 10px #028b69; */
-  /* border-radius: 10px 0 0 10px; top-left | top-right | bottom-right | bottom-left */
 }
 
 #div__search input::placeholder,
@@ -68,7 +64,7 @@
 
 .input__search {
   flex-grow: 0.3;
-  background-color: rgba(27, 129, 102, 0.9);
+  background-color: rgb(27, 129, 102);
   border: solid 9px rgb(27, 129, 102);
   border-radius: 10px 0 0 10px;
   margin-right: 10px;
@@ -76,7 +72,7 @@
 
 .input__location {
   flex-grow: 0.1;
-  background-color: rgba(27, 129, 102, 0.9);
+  background-color: rgb(27, 129, 102);
   border: solid 9px rgb(27, 129, 102);
   border-radius: 0 10px 10px 0;
 }
@@ -84,7 +80,7 @@
 #div__nav-links {
   flex-grow: 0.3;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-family: Lato, sans-serif;
 }
@@ -97,7 +93,6 @@
 #div__nav-links li {
   display: flex;
   justify-content: space-around;
-  :none ;
 }
 
 #div__nav-links a {
@@ -105,5 +100,6 @@
   font-family: Lato, sans-serif;
   color: white;
   font-weight: 900;
-  font-size: 1.4em;
+  font-size: 1.3em;
+  cursor: pointer;
 }
