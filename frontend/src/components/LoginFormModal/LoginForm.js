@@ -25,28 +25,30 @@ function LoginForm() {
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <div>
-        <label>
-          Username or Email
+
+      <label>
+        Username or Email
+        <div>
           <input
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
             required
           />
-        </label>
-      </div>
-      <div>
-        <label>
-          Password
+        </div>
+      </label>
+
+      <label>
+        Password
+        <div>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-      </div>
+        </div>
+      </label>
       <button type="submit">Log In</button>
     </form>
   );
