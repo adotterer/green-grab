@@ -95,7 +95,10 @@
   justify-content: space-around;
 }
 
+#div__nav-links button,
 #div__nav-links a {
+  background: none;
+  border: none;
   text-decoration: none;
   font-family: Lato, sans-serif;
   color: white;
