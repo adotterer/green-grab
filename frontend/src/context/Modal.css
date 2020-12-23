@@ -53,6 +53,7 @@ textarea {
 }
 
 #modal-content button {
+  font-family: Lato, sans-serif;
   border: 1px solid rgb(0, 169, 128);
   font-size: 1.2em;
   color: white;
