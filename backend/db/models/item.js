@@ -12,15 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  Item.offerItem = async function ({ test }) {
-    const { itemName, description, price, location } = test;
+  Item.offerItem = async function (test) {
+    const { itemName, itemDescription, itemPrice } = test;
 
     const item = await Item.create({
       itemName,
-      description,
-      price,
+      description: itemDescription,
+      price: itemPrice,
       sellerId: 2,
-      location,
     });
     console.log(item, "in /db/model/item.js");
     return "created item";

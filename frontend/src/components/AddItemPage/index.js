@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { Redirect } from "react-router-dom";
 // import "./LoginForm.css";
 
 function AddItemPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user);
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemImage, setItemImage] = useState("");

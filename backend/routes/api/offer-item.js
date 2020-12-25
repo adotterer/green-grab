@@ -9,14 +9,25 @@ const { User, Item } = require("../../db/models");
 router.post(
   "/",
   asyncHandler(async (req, res) => {
-    const { test } = req.body;
+    const { itemName, itemPrice, itemImage, itemDescription } = req.body;
 
-    const item = await Item.offerItem({ test });
-
-    await setTokenCookie(res, item);
-
+    const item = await Item.offerItem({
+      itemName,
+      itemPrice,
+      // itemImage,
+      itemDescription,
+    });
+    console.log(
+      "HELLO FROM OFFER-ITEM API",
+      itemName,
+      itemPrice,
+      itemImage,
+      itemDescription
+    );
     return res.json({
       item,
     });
   })
 );
+
+module.exports = router;

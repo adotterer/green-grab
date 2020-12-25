@@ -1,10 +1,13 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
+const offerItemRouter = require("./offer-item.js");
 
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
+
+router.use("/offer-item", offerItemRouter);
 
 /*********** TEST FRONTEND /API/TEST POST ROUTE *************/
 router.post("/test", function (req, res) {

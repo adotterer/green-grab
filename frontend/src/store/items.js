@@ -19,15 +19,14 @@ const removeItem = () => {
 
 export const offerItem = (item) => async (dispatch) => {
   // this is a thunk
-  const { itemName, price, image, description } = item;
+  const { itemName, itemPrice, itemImage, itemDescription } = item;
   const response = await fetch("/api/offer-item", {
     method: "POST",
     body: JSON.stringify({
-      message: "HELLO FROM POST REQUEST /api/offer-item",
       itemName,
-      price,
+      itemPrice,
       // image,
-      description,
+      itemDescription,
       // user,
       // TODO: PUT WHAT GOES HERE ACTUALLY
     }),
