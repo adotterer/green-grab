@@ -10,6 +10,7 @@ function AddItemPage() {
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState("");
   const [itemImage, setItemImage] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
   // const [credential, setCredential] = useState("");
   // const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -64,6 +65,17 @@ function AddItemPage() {
             type="file"
             value={itemImage}
             onChange={(e) => setItemImage(e.target.value)}
+            accept="image/x-png,image/gif,image/jpeg"
+            required
+          />
+        </div>
+      </label>
+      <label>
+        Description
+        <div>
+          <textarea
+            value={itemDescription}
+            onChange={(e) => setItemDescription(e.target.value)}
             required
           />
         </div>
