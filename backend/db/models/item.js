@@ -11,6 +11,21 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+
+  Item.offerItem = async function ({ test }) {
+    const { itemName, description, price, location } = test;
+
+    const item = await Item.create({
+      itemName,
+      description,
+      price,
+      sellerId: 2,
+      location,
+    });
+    console.log(item, "in /db/model/item.js");
+    return "created item";
+  };
+
   Item.associate = function (models) {
     const columnMapping = {
       through: "ItemImageAssociation",

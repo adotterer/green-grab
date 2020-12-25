@@ -7,7 +7,7 @@ const setItem = (item) => {
   // this is a POJO action creator
   return {
     type: SET_ITEM,
-    payload: user,
+    payload: item,
   };
 };
 
@@ -35,3 +35,21 @@ export const offerItem = (item) => async (dispatch) => {
   dispatch(setItem(response.data.item));
   return response;
 };
+
+const itemReducer = (state = initialState, action) => {
+  let newState;
+  switch (action.type) {
+    case SET_ITEM:
+      newState = Object.assign({}, state);
+      newState.item = action.payload;
+      return newState;
+    case REMOVE_ITEM:
+      newState = Object.assign({}, state);
+      newState.item = null;
+      return newState;
+    default:
+      return state;
+  }
+};
+
+export default itemReducer;
