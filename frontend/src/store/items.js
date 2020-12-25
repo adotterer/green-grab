@@ -19,22 +19,24 @@ const removeItem = () => {
 
 export const offerItem = (item) => async (dispatch) => {
   // this is a thunk
-  const { itemName, price, image, description, user } = item;
+  const { itemName, price, image, description } = item;
   const response = await fetch("/api/offer-item", {
     method: "POST",
     body: JSON.stringify({
       message: "HELLO FROM POST REQUEST /api/offer-item",
       itemName,
       price,
-      image,
+      // image,
       description,
-      user,
+      // user,
       // TODO: PUT WHAT GOES HERE ACTUALLY
     }),
   });
   dispatch(setItem(response.data.item));
   return response;
 };
+
+const initialState = {};
 
 const itemReducer = (state = initialState, action) => {
   let newState;

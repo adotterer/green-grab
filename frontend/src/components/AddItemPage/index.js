@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
+import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import "./LoginForm.css";
@@ -18,11 +18,16 @@ function AddItemPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    // return dispatch(sessionActions.login({ credential, password })).catch(
-    //   (res) => {
-    //     if (res.data && res.data.errors) setErrors(res.data.errors);
-    //   }
-    // );
+    return dispatch(
+      itemActions.offerItem({
+        itemName,
+        itemPrice,
+        itemImage,
+        itemDescription,
+      })
+    ).catch((res) => {
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
 
     // TODO: ADD ERROR HANDLING
   };
