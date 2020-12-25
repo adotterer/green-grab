@@ -45,6 +45,9 @@ function Navigation({ isLoaded }) {
             <NavLink exact to="/">
               Home
             </NavLink>
+            <NavLink exact to="/offer-item">
+              Offer Item
+            </NavLink>
             {isLoaded && sessionLinks}
           </li>
         </ul>
