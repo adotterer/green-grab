@@ -25,7 +25,7 @@ function AddItemPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-
+    console.log(itemImage);
     // dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
     //   if (res.data && res.data.errors) setErrors(res.data.errors);
     // });
@@ -46,8 +46,8 @@ function AddItemPage() {
 
   return (
     <div className="div__container">
-      <img src={itemImage} />
-      <form action="/api/offer-item">
+      <img src={itemImage ? URL.createObjectURL(itemImage) : null} />
+      <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -111,8 +111,7 @@ function AddItemPage() {
               <input
                 name="sampleFile"
                 type="file"
-                // value={itemImage}
-                // onChange={(e) => setItemImage(e.target.value)}
+                onChange={(e) => setItemImage(e.target.files[0])}
                 accept="image/x-png,image/gif,image/jpeg"
                 required
               />
