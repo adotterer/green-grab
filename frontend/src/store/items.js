@@ -2,6 +2,7 @@ import { fetch } from "./csrf";
 
 const SET_ITEM = "items/setItem";
 const REMOVE_ITEM = "session/removeItem";
+const UPLOAD_IMAGE = "offer-item/upload";
 
 const setItem = (item) => {
   // this is a POJO action creator
@@ -17,21 +18,42 @@ const removeItem = () => {
   };
 };
 
+const uploadImage = () => {
+  return {
+    type: UPLOAD_IMAGE,
+  };
+};
+
 export const offerItem = (item) => async (dispatch) => {
   // this is a thunk
   const { itemName, itemPrice, itemImage, itemDescription } = item;
   const response = await fetch("/api/offer-item", {
     method: "POST",
-    body: JSON.stringify({
-      itemName,
-      itemPrice,
-      // image,
-      itemDescription,
-      // user,
-      // TODO: PUT WHAT GOES HERE ACTUALLY
-    }),
+    body: JSON.stringify({ item }),
+
+    // JSON.stringify({
+    // itemName,
+    // itemPrice,
+    // itemImage,
+    // itemDescription,
+
+    // }),
+    // user,
+    // TODO: PUT WHAT GOES HERE ACTUALLY
   });
   dispatch(setItem(response.data.item));
+  return response;
+};
+
+export const addImageUpload = (image) => async (dispatch) => {
+  // this is a thunk
+  console.log("hello from addImageUpload function", image);
+  const response = await fetch("/api/offer-item/upload", {
+    method: "POST",
+    // headers: { "Content-Type": "multipart/form-data" },
+    body: JSON.stringify({ image }),
+  });
+  dispatch(uploadImage(response.data.image));
   return response;
 };
 

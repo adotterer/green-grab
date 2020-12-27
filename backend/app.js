@@ -9,11 +9,14 @@ const isProduction = environment === "production";
 const app = express();
 const routes = require("./routes");
 const { ValidationError } = require("sequelize");
+const fileUpload = require("express-fileupload");
 
 /*********** MIDDLEWARE *************/
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
+
+app.use(fileUpload());
 
 // Security Middleware
 if (!isProduction) {

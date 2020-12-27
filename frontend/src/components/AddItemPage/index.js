@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
 // import { Redirect } from "react-router-dom";
@@ -15,9 +15,21 @@ function AddItemPage() {
   // const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+  // let imgUploadView;
+
+  // useEffect(() => {
+  //   console.log(`selectedProduct CHANGED TO`, selectedProduct);
+  //   imgUploadView =
+  // }, [itemImage]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+
+    // dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
+    //   if (res.data && res.data.errors) setErrors(res.data.errors);
+    // });
+
     return dispatch(
       itemActions.offerItem({
         itemName,
@@ -32,11 +44,10 @@ function AddItemPage() {
     // TODO: ADD ERROR HANDLING
   };
 
-  
-
   return (
     <div className="div__container">
-      <form onSubmit={handleSubmit}>
+      <img src={itemImage} />
+      <form action="/api/offer-item">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -98,9 +109,10 @@ function AddItemPage() {
             <h3>Upload Image</h3>
             <div>
               <input
+                name="sampleFile"
                 type="file"
-                value={itemImage}
-                onChange={(e) => setItemImage(e.target.value)}
+                // value={itemImage}
+                // onChange={(e) => setItemImage(e.target.value)}
                 accept="image/x-png,image/gif,image/jpeg"
                 required
               />
