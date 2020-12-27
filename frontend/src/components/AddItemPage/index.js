@@ -25,28 +25,27 @@ function AddItemPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    console.log(itemImage);
-    // dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
-    //   if (res.data && res.data.errors) setErrors(res.data.errors);
-    // });
-
-    return dispatch(
-      itemActions.offerItem({
-        itemName,
-        itemPrice,
-        itemImage,
-        itemDescription,
-      })
-    ).catch((res) => {
+    console.log("before dispatch", itemImage.name);
+    return dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     });
+
+    // return dispatch(
+    //   itemActions.offerItem({
+    //     itemName,
+    //     itemPrice,
+    //     itemImage,
+    //     itemDescription,
+    //   })
+    // ).catch((res) => {
+    //   if (res.data && res.data.errors) setErrors(res.data.errors);
+    // });
 
     // TODO: ADD ERROR HANDLING
   };
 
   return (
     <div className="div__container">
-      <img src={itemImage ? URL.createObjectURL(itemImage) : null} />
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -105,6 +104,8 @@ function AddItemPage() {
         </label>
         <br />
         <div>
+          <img src={itemImage ? URL.createObjectURL(itemImage) : null} />
+          <br />
           <label>
             <h3>Upload Image</h3>
             <div>

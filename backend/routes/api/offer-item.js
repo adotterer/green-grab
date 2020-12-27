@@ -6,8 +6,8 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User, Item } = require("../../db/models");
 const fileUpload = require("express-fileupload");
-
 router.use(fileUpload());
+
 router.post(
   "/",
   asyncHandler(async (req, res) => {
@@ -36,20 +36,29 @@ router.post(
 router.post(
   "/upload",
   asyncHandler(async function (req, res) {
-    console.log("HELLOOOOOOO from offer-item post route", req);
-    if (!req.files || Object.keys(req.files).length === 0) {
-      return res.status(400).send("No files were uploaded.");
-    }
+    // if (!req.files || Object.keys(req.files).length === 0) {
+    //   return res.status(400).send("No files were uploaded.");
+    // }
+    console.log(req.body.files, "|req.files|");
 
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    let sampleFile = req.files.sampleFile;
-    console.log(sampleFile);
-    // Use the mv() method to place the file somewhere on your server
-    sampleFile.mv("../../images/image.png", function (err) {
+    const { image } = req.body;
+    // console.log("req.body", image);
+
+    image.mv("/images/test.png", function (err) {
       if (err) return res.status(500).send(err);
 
       res.send("File uploaded!");
     });
+
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    // let sampleFile = req.body;
+    // console.log(sampleFile);
+    // // Use the mv() method to place the file somewhere on your server
+    // sampleFile.mv("../../images/image.png", function (err) {
+    //   if (err) return res.status(500).send(err);
+
+    //   res.send("File uploaded!");
+    // });
   })
 );
 

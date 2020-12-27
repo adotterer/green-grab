@@ -45,13 +45,12 @@ export const offerItem = (item) => async (dispatch) => {
   return response;
 };
 
-export const addImageUpload = (image) => async (dispatch) => {
+export const addImageUpload = (files) => async (dispatch) => {
   // this is a thunk
-  console.log("hello from addImageUpload function", image);
   const response = await fetch("/api/offer-item/upload", {
     method: "POST",
     // headers: { "Content-Type": "multipart/form-data" },
-    body: JSON.stringify({ image }),
+    body: JSON.stringify({ files }),
   });
   dispatch(uploadImage(response.data.image));
   return response;

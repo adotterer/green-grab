@@ -103,3 +103,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .div__inline {
   display: inline-flex;
 }
+
+.div__container img {
+  max-width: 100%;
+}
