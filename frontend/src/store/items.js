@@ -45,15 +45,19 @@ export const offerItem = (item) => async (dispatch) => {
   return response;
 };
 
-export const addImageUpload = (files) => async (dispatch) => {
+export const addImageUpload = (image) => async (dispatch) => {
   // this is a thunk
-  const response = await fetch("/api/offer-item/upload", {
+
+  const formData = new FormData();
+  formData.append("myFile", image);
+  console.log("before fetch, forData", formData);
+  await fetch("/api/offer-item/upload", {
     method: "POST",
-    // headers: { "Content-Type": "multipart/form-data" },
-    body: JSON.stringify({ files }),
+    body: formData,
   });
-  dispatch(uploadImage(response.data.image));
-  return response;
+  // return response;
+  // dispatch(uploadImage(response.data.image));
+  // return response;
 };
 
 const initialState = {};

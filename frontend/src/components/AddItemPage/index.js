@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
 // import { Redirect } from "react-router-dom";
+import { fetch } from "../../store/csrf";
 import "./addItemPage.css";
 
 function AddItemPage() {
@@ -22,13 +23,30 @@ function AddItemPage() {
   //   imgUploadView =
   // }, [itemImage]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-    console.log("before dispatch", itemImage.name);
-    return dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
-      if (res.data && res.data.errors) setErrors(res.data.errors);
-    });
+
+    const formData = new FormData();
+    formData.append("myFile", itemImage);
+    console.log("before fetch, forData", formData);
+    const response = await fetch("/api/offer-item/upload", {
+      method: "POST",
+      headers: { "Content-Type": "multipart/form-data" },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.path);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    return response;
+
+    // return dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
+    //   if (res.data && res.data.errors) setErrors(res.data.errors);
+    // });
 
     // return dispatch(
     //   itemActions.offerItem({

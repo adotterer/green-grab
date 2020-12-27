@@ -4,19 +4,21 @@ const cors = require("cors");
 const csurf = require("csurf");
 const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const { environment } = require("./config");
 const isProduction = environment === "production";
 const app = express();
 const routes = require("./routes");
 const { ValidationError } = require("sequelize");
-const fileUpload = require("express-fileupload");
+// const fileUpload = require("express-fileupload");
 
 /*********** MIDDLEWARE *************/
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(fileUpload());
+// app.use(fileUpload());
 
 // Security Middleware
 if (!isProduction) {

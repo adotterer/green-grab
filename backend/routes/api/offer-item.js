@@ -6,6 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User, Item } = require("../../db/models");
 const fileUpload = require("express-fileupload");
+
 router.use(fileUpload());
 
 router.post(
@@ -36,19 +37,19 @@ router.post(
 router.post(
   "/upload",
   asyncHandler(async function (req, res) {
+    console.log(req.body);
     // if (!req.files || Object.keys(req.files).length === 0) {
     //   return res.status(400).send("No files were uploaded.");
     // }
-    console.log(req.body.files, "|req.files|");
 
-    const { image } = req.body;
-    // console.log("req.body", image);
+    // const { image } = req.body;
+    // // console.log("req.body", image);
 
-    image.mv("/images/test.png", function (err) {
-      if (err) return res.status(500).send(err);
+    // image.mv("/images/test.png", function (err) {
+    //   if (err) return res.status(500).send(err);
 
-      res.send("File uploaded!");
-    });
+    //   res.send("File uploaded!");
+    // });
 
     // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     // let sampleFile = req.body;
