@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User, Item } = require("../../db/models");
 const fileUpload = require("express-fileupload");
+const upload = multer();
 
 router.use(fileUpload());
 
@@ -36,29 +38,29 @@ router.post(
 
 router.post(
   "/upload",
+  upload.none(),
   asyncHandler(async function (req, res) {
     console.log(req.body);
-    // if (!req.files || Object.keys(req.files).length === 0) {
-    //   return res.status(400).send("No files were uploaded.");
-    // }
+    // const fileName = req.files.myFile.name;
+    // console.log("fileName", fileName);
+    // const path = __dirname + "/images/" + fileName;
 
-    // const { image } = req.body;
-    // // console.log("req.body", image);
+    // image.mv(path, (error) => {
+    //   if (error) {
+    //     console.error(error);
+    //     res.writeHead(500, {
+    //       "Content-Type": "application/json",
+    //     });
+    //     res.end(JSON.stringify({ status: "error", message: error }));
+    //     return;
+    //   }
 
-    // image.mv("/images/test.png", function (err) {
-    //   if (err) return res.status(500).send(err);
-
-    //   res.send("File uploaded!");
-    // });
-
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-    // let sampleFile = req.body;
-    // console.log(sampleFile);
-    // // Use the mv() method to place the file somewhere on your server
-    // sampleFile.mv("../../images/image.png", function (err) {
-    //   if (err) return res.status(500).send(err);
-
-    //   res.send("File uploaded!");
+    //   res.writeHead(200, {
+    //     "Content-Type": "application/json",
+    //   });
+    //   res.end(
+    //     JSON.stringify({ status: "success", path: "/img/houses/" + fileName })
+    //   );
     // });
   })
 );

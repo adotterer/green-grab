@@ -32,7 +32,7 @@ function AddItemPage() {
     console.log("before fetch, forData", formData);
     const response = await fetch("/api/offer-item/upload", {
       method: "POST",
-      headers: { "Content-Type": "multipart/form-data" },
+      // headers: { "Content-Type": "multipart/form-data" },
       body: formData,
     })
       .then((response) => response.json())

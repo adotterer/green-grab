@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import AddItemPage from "./components/AddItemPage";
 import SignUpFormPage from "./components/SignUpFormPage";
+import UploadImage from "./components/UploadImage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 

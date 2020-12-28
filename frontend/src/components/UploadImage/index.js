@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
+import "./uploadImagePage.css";
 // import { Redirect } from "react-router-dom";
-// import { fetch } from "../../store/csrf";
+import { fetch } from "../../store/csrf";
 
 function UploadImagePage() {
   const dispatch = useDispatch();
@@ -20,13 +21,35 @@ function UploadImagePage() {
   //   imgUploadView =
   // }, [itemImage]);
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  // };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const files = event.target.files;
+    console.log(files);
+  };
+
+  const handleImageUpload = async (event) => {
+    const files = event.target.files;
+    const formData = new FormData();
+    formData.append("myFile", files[0]);
+    await fetch("/api/offer-item/upload", {
+      method: "POST",
+      headers: { "Content-Type": "multipart/form-data" },
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.path);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    console.log("formData", formData);
+  };
 
   return (
     <div className="div__container">
-      <form >
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="POST">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -41,7 +64,7 @@ function UploadImagePage() {
               <input
                 name="sampleFile"
                 type="file"
-                onChange={(e) => setItemImage(e.target.files[0])}
+                onChange={handleImageUpload}
                 accept="image/x-png,image/gif,image/jpeg"
                 required
               />
@@ -59,4 +82,4 @@ function UploadImagePage() {
   );
 }
 
-export default AddItemPage;
+export default UploadImagePage;
