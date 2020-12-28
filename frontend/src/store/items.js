@@ -25,39 +25,31 @@ const uploadImage = () => {
 };
 
 export const offerItem = (item) => async (dispatch) => {
-  // this is a thunk
-  const { itemName, itemPrice, itemImage, itemDescription } = item;
-  const response = await fetch("/api/offer-item", {
-    method: "POST",
-    body: JSON.stringify({ item }),
-
-    // JSON.stringify({
-    // itemName,
-    // itemPrice,
-    // itemImage,
-    // itemDescription,
-
-    // }),
-    // user,
-    // TODO: PUT WHAT GOES HERE ACTUALLY
-  });
-  dispatch(setItem(response.data.item));
-  return response;
-};
-
-export const addImageUpload = (image) => async (dispatch) => {
-  // this is a thunk
+  const { itemName, itemPrice, itemImage, itemDescription, itemImages } = item;
 
   const formData = new FormData();
-  formData.append("myFile", image);
-  console.log("before fetch, forData", formData);
-  await fetch("/api/offer-item/upload", {
+  formData.append("itemName", itemName);
+  formData.append("itemPrice", itemPrice);
+  formData.append("itemDescription", itemDescription);
+
+  const imageFormData = new FormData();
+
+  // for multiple files
+  // if (itemImages && itemImages.length !== 0) {
+  //   for (var i = 0; i < itemImages.length; i++) {
+  //     imageFormData.append("images", itemImages[i]);
+  //   }
+  // }
+
+  // for single file
+  if (itemImage) imageFormData.append("image", itemImage);
+
+  const res = await fetch(`/api/offer-item/upload`, {
     method: "POST",
-    body: formData,
+    body: imageFormData,
   });
-  // return response;
-  // dispatch(uploadImage(response.data.image));
-  // return response;
+
+  dispatch(setItem(res.data.user));
 };
 
 const initialState = {};

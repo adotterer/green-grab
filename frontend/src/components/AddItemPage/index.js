@@ -12,54 +12,19 @@ function AddItemPage() {
   const [itemPrice, setItemPrice] = useState(0.0);
   const [itemImage, setItemImage] = useState("");
   const [itemDescription, setItemDescription] = useState("");
-  // const [credential, setCredential] = useState("");
-  // const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  // let imgUploadView;
-
-  // useEffect(() => {
-  //   console.log(`selectedProduct CHANGED TO`, selectedProduct);
-  //   imgUploadView =
-  // }, [itemImage]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
-
-    const formData = new FormData();
-    formData.append("myFile", itemImage);
-    console.log("before fetch, forData", formData);
-    const response = await fetch("/api/offer-item/upload", {
-      method: "POST",
-      // headers: { "Content-Type": "multipart/form-data" },
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.path);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    return response;
-
-    // return dispatch(itemActions.addImageUpload(itemImage)).catch((res) => {
-    //   if (res.data && res.data.errors) setErrors(res.data.errors);
-    // });
-
-    // return dispatch(
-    //   itemActions.offerItem({
-    //     itemName,
-    //     itemPrice,
-    //     itemImage,
-    //     itemDescription,
-    //   })
-    // ).catch((res) => {
-    //   if (res.data && res.data.errors) setErrors(res.data.errors);
-    // });
-
-    // TODO: ADD ERROR HANDLING
+    dispatch(
+      itemActions.offerItem({ itemName, itemPrice, itemImage, itemDescription })
+    );
+    setItemName("");
+    setItemPrice("");
+    setItemImage(null);
+    setItemDescription("");
+    e.target.value = null;
   };
 
   return (

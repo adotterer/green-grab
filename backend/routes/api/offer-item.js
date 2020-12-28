@@ -37,8 +37,8 @@ router.post(
   "/upload",
   singleMulterUpload("image"),
   asyncHandler(async function (req, res) {
-    const profileImageUrl = await singlePublicFileUpload(req.file);
-    console.log(profileImageUrl);
+    const productImageUrl = await singlePublicFileUpload(req.file);
+    console.log(productImageUrl);
     // const fileName = req.files.myFile.name;
     // console.log("fileName", fileName);
     // const path = __dirname + "/images/" + fileName;
