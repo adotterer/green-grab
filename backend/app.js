@@ -11,14 +11,11 @@ const app = express();
 const routes = require("./routes");
 const { ValidationError } = require("sequelize");
 
-
 /*********** MIDDLEWARE *************/
 app.use(morgan("dev"));
 app.use(cookieParser());
-app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
+app.use(bodyParser.json());
 
 // Security Middleware
 if (!isProduction) {

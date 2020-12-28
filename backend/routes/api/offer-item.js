@@ -6,10 +6,7 @@ const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User, Item } = require("../../db/models");
-const fileUpload = require("express-fileupload");
-const upload = multer();
-
-router.use(fileUpload());
+const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 router.post(
   "/",
@@ -38,9 +35,10 @@ router.post(
 
 router.post(
   "/upload",
-  upload.none(),
+  singleMulterUpload("image"),
   asyncHandler(async function (req, res) {
-    console.log(req.body);
+    const profileImageUrl = await singlePublicFileUpload(req.file);
+    console.log(profileImageUrl);
     // const fileName = req.files.myFile.name;
     // console.log("fileName", fileName);
     // const path = __dirname + "/images/" + fileName;
