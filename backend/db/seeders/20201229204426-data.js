@@ -71,6 +71,7 @@ module.exports = {
     const randomUser = () => {
       return Math.floor(Math.floor(users.length) * Math.random());
     };
+
     const items = await queryInterface.bulkInsert(
       "Items",
       [
@@ -119,14 +120,96 @@ module.exports = {
           sellerId: randomUser(),
           location: "Seattle, WA",
         },
+        {
+          itemName: "Thai basil cutting",
+          description: lorem.generateParagraphs(3),
+          price: null,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
+        },
+        {
+          itemName: "Cilantro",
+          description: lorem.generateParagraphs(3),
+          price: null,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
+        },
+        {
+          itemName: "Bird Eye chili pepper (one bunch) !spicy!",
+          description: lorem.generateParagraphs(3),
+          price: 4,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
+        },
       ],
       { returning: true }
+    );
+    const images = await queryInterface.bulkInsert("Images", [
+      {
+        // AVOCADOS
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/avocados.jpg",
+      },
+      {
+        // BIRDS EYE CHILIS
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/bird_eyes_chili_pepper.jpeg",
+      },
+      {
+        // CILANTRO
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/cilantro.jpeg",
+      },
+      {
+        // CROTON
+        URL: "https://green-grab-bucket.s3-us-west-1.amazonaws.com/croton.jpg",
+      },
+      {
+        // FIDDLE LEAF
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/fiddle-leaf-fig.jpeg",
+      },
+      {
+        // LEMONS
+        URL: "https://green-grab-bucket.s3-us-west-1.amazonaws.com/lemons.jpg",
+      },
+      {
+        // LETTUCE
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/lettuce.jpeg",
+      },
+      {
+        // ROSEMARY
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/rosemary.png",
+      },
+      {
+        // THAI BASIL
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/thai_basil.jpeg",
+      },
+      {
+        // VARIEGATED MONSTERA
+        URL:
+          "https://green-grab-bucket.s3-us-west-1.amazonaws.com/variegated_monstera.jpeg",
+      },
+    ]);
+    const itemImageAssociations = await queryInterface.bulkInsert(
+      "ItemImageAssociations",
+      [
+        // avocados.jpg
+        {
+          itemId,
+          imageId,
+          primaryId,
+        },
+      ]
     );
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("Users");
     await queryInterface.bulkDelete("Items");
+    await queryInterface.bulkDelete("Users");
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
