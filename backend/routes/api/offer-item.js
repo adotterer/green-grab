@@ -27,6 +27,8 @@ router.post(
     );
 
     //  TO DO: CHANGE primaryId to be the thumbnail image for the entire site
+    //  Right now you can only upload one image, so that is the default primary
+
     const primaryId = imageUrlId;
 
     const itemImageJoinId = await ItemImageAssociation.addImageToItem(
@@ -35,7 +37,20 @@ router.post(
       primaryId
     );
 
-    console.log(" ++++ ", itemImageJoinId, ": itemImageJoinId");
+    // console.log(" ++++ ", itemImageJoinId, ": itemImageJoinId");
+    const item = {
+      itemName,
+      itemPrice,
+      itemDescription,
+      userId,
+      productImageUrl,
+    };
+
+    // To Do: figure out what the heck to do here
+
+    return res.json({
+      item,
+    });
   })
 );
 

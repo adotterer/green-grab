@@ -50,12 +50,14 @@ export const offerItem = (item) => async (dispatch) => {
   // for single file
   if (itemImage) formData.append("image", itemImage);
 
-  const res = await fetch(`/api/offer-item/`, {
+  const response = await fetch(`/api/offer-item/`, {
     method: "POST",
     body: formData,
   });
 
-  dispatch(setItem(res.data.user));
+  dispatch(setItem(response.data.item));
+  // console.log("response data item", response.data.item);
+  // return response;
 };
 
 const initialState = {};
