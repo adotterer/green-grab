@@ -32,21 +32,19 @@ export const offerItem = (item) => async (dispatch) => {
   formData.append("itemPrice", itemPrice);
   formData.append("itemDescription", itemDescription);
 
-  const imageFormData = new FormData();
-
   // for multiple files
   // if (itemImages && itemImages.length !== 0) {
   //   for (var i = 0; i < itemImages.length; i++) {
-  //     imageFormData.append("images", itemImages[i]);
+  //     formData.append("images", itemImages[i]);
   //   }
   // }
 
   // for single file
-  if (itemImage) imageFormData.append("image", itemImage);
+  if (itemImage) formData.append("image", itemImage);
 
   const res = await fetch(`/api/offer-item/upload`, {
     method: "POST",
-    body: imageFormData,
+    body: formData,
   });
 
   dispatch(setItem(res.data.user));

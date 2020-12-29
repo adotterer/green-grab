@@ -5,33 +5,8 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User, Item } = require("../../db/models");
+const { User, Item, Image } = require("../../db/models");
 const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
-
-router.post(
-  "/",
-  asyncHandler(async (req, res) => {
-    console.log("req.files", req.files);
-    // const { itemName, itemPrice, itemImage, itemDescription } = req.body;
-
-    // const item = await Item.offerItem({
-    //   itemName,
-    //   itemPrice,
-    //   itemImage,
-    //   itemDescription,
-    // });
-    // console.log(
-    //   "HELLO FROM OFFER-ITEM API",
-    //   itemName,
-    //   itemPrice,
-    //   itemImage,
-    //   itemDescription
-    // );
-    // return res.json({
-    //   item,
-    // });
-  })
-);
 
 router.post(
   "/upload",
@@ -39,6 +14,9 @@ router.post(
   asyncHandler(async function (req, res) {
     const productImageUrl = await singlePublicFileUpload(req.file);
     console.log(productImageUrl);
+    Image.addImage(productImageUrl);
+
+    console.log("Image URL saved in database.");
     // const fileName = req.files.myFile.name;
     // console.log("fileName", fileName);
     // const path = __dirname + "/images/" + fileName;
