@@ -7,15 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+
   /*********** IMAGE METHODS *************/
   Image.addImage = async function (URL) {
-    // remember, this cannot be an arrow function
     const image = await Image.create({
-      URL
+      URL,
     });
-    return "!! ~ replace this with created URL id ~ !!";
+    return image.dataValues.id;
   };
-
 
   Image.associate = function (models) {
     const columnMapping = {

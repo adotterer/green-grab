@@ -5,39 +5,25 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User, Item, Image } = require("../../db/models");
+const { User, Item, Image, ItemImageAssociation } = require("../../db/models");
 const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 router.post(
-  "/upload",
+  "/",
   singleMulterUpload("image"),
   asyncHandler(async function (req, res) {
+    const { itemName, itemPrice, itemDescription, userId } = req.body;
+    console.log(" ++++ ", itemName, ": itemName");
+    console.log(" ++++ ", userId, ": userId");
+    // add the item info to database
+    // then, find it by ID
+    // then send ID
     const productImageUrl = await singlePublicFileUpload(req.file);
-    console.log(productImageUrl);
-    Image.addImage(productImageUrl);
-
-    console.log("Image URL saved in database.");
-    // const fileName = req.files.myFile.name;
-    // console.log("fileName", fileName);
-    // const path = __dirname + "/images/" + fileName;
-
-    // image.mv(path, (error) => {
-    //   if (error) {
-    //     console.error(error);
-    //     res.writeHead(500, {
-    //       "Content-Type": "application/json",
-    //     });
-    //     res.end(JSON.stringify({ status: "error", message: error }));
-    //     return;
-    //   }
-
-    //   res.writeHead(200, {
-    //     "Content-Type": "application/json",
-    //   });
-    //   res.end(
-    //     JSON.stringify({ status: "success", path: "/img/houses/" + fileName })
-    //   );
-    // });
+    const imageUrlId = await Image.addImage(productImageUrl);
+    // const itemId = await Item;
+    console.log(" !!! imageUrlId", imageUrlId);
+    // Item.addItem(data);
+    // ItemImageAssociation.addImageToItem(imageURLId, itemId)
   })
 );
 

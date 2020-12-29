@@ -6,19 +6,28 @@ import { fetch } from "../../store/csrf";
 import "./addItemPage.css";
 
 function AddItemPage() {
+  const sessionUser = useSelector((state) => state.session.user);
+
   const dispatch = useDispatch();
-  // const sessionUser = useSelector((state) => state.session.user);
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0.0);
   const [itemImage, setItemImage] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [errors, setErrors] = useState([]);
+  const userId = sessionUser.id;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     setErrors([]);
     dispatch(
-      itemActions.offerItem({ itemName, itemPrice, itemImage, itemDescription })
+      itemActions.offerItem({
+        itemName,
+        itemPrice,
+        itemDescription,
+        userId,
+        itemImage,
+      })
     );
     setItemName("");
     setItemPrice("");
@@ -65,7 +74,7 @@ function AddItemPage() {
               <input
                 className="input__price"
                 type="number"
-                min="1"
+                min="0"
                 step="1"
                 value={itemPrice}
                 onChange={(e) => setItemPrice(e.target.value)}

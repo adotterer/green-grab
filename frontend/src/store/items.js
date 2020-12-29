@@ -25,24 +25,32 @@ const uploadImage = () => {
 };
 
 export const offerItem = (item) => async (dispatch) => {
-  const { itemName, itemPrice, itemImage, itemDescription, itemImages } = item;
+  const {
+    itemName,
+    itemPrice,
+    itemImage,
+    itemDescription,
+    userId,
+    itemImages,
+  } = item;
 
   const formData = new FormData();
   formData.append("itemName", itemName);
   formData.append("itemPrice", itemPrice);
   formData.append("itemDescription", itemDescription);
+  formData.append("userId", userId);
 
   // for multiple files
-  // if (itemImages && itemImages.length !== 0) {
-  //   for (var i = 0; i < itemImages.length; i++) {
-  //     formData.append("images", itemImages[i]);
-  //   }
-  // }
+  if (itemImages && itemImages.length !== 0) {
+    for (var i = 0; i < itemImages.length; i++) {
+      formData.append("images", itemImages[i]);
+    }
+  }
 
   // for single file
   if (itemImage) formData.append("image", itemImage);
 
-  const res = await fetch(`/api/offer-item/upload`, {
+  const res = await fetch(`/api/offer-item/`, {
     method: "POST",
     body: formData,
   });
