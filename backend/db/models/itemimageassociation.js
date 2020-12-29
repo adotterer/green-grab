@@ -16,11 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     imageId,
     primaryId
   ) {
-    ItemImageAssociation.create({
+    const itemImageJoin = await ItemImageAssociation.create({
       itemId,
       imageId,
       primaryId,
     });
+    return itemImageJoin.dataValues.id;
   };
 
   ItemImageAssociation.associate = function (models) {

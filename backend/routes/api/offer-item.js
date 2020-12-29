@@ -13,17 +13,29 @@ router.post(
   singleMulterUpload("image"),
   asyncHandler(async function (req, res) {
     const { itemName, itemPrice, itemDescription, userId } = req.body;
-    console.log(" ++++ ", itemName, ": itemName");
-    console.log(" ++++ ", userId, ": userId");
-    // add the item info to database
-    // then, find it by ID
-    // then send ID
+    // console.log(" ++++ ", itemName, ": itemName");
+    // console.log(" ++++ ", userId, ": userId");
+
     const productImageUrl = await singlePublicFileUpload(req.file);
     const imageUrlId = await Image.addImage(productImageUrl);
-    // const itemId = await Item;
-    console.log(" !!! imageUrlId", imageUrlId);
-    // Item.addItem(data);
-    // ItemImageAssociation.addImageToItem(imageURLId, itemId)
+
+    const itemId = await Item.offerItem(
+      itemName,
+      itemPrice,
+      itemDescription,
+      userId
+    );
+
+    //  TO DO: CHANGE primaryId to be the thumbnail image for the entire site
+    const primaryId = imageUrlId;
+
+    const itemImageJoinId = await ItemImageAssociation.addImageToItem(
+      itemId,
+      imageUrlId,
+      primaryId
+    );
+
+    console.log(" ++++ ", itemImageJoinId, ": itemImageJoinId");
   })
 );
 

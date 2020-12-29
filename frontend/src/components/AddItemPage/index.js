@@ -18,7 +18,6 @@ function AddItemPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setErrors([]);
     dispatch(
       itemActions.offerItem({
@@ -30,7 +29,7 @@ function AddItemPage() {
       })
     );
     setItemName("");
-    setItemPrice("");
+    setItemPrice(0);
     setItemImage(null);
     setItemDescription("");
     e.target.value = null;

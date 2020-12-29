@@ -12,17 +12,20 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
 
-  Item.offerItem = async function (test) {
-    const { itemName, itemDescription, itemPrice } = test;
-
+  Item.offerItem = async function (
+    itemName,
+    itemPrice,
+    itemDescription,
+    userId
+  ) {
     const item = await Item.create({
       itemName,
-      description: itemDescription,
       price: itemPrice,
-      sellerId: 2,
+      sellerId: userId,
+      description: itemDescription,
     });
-    console.log(item, "in /db/model/item.js");
-    return "created item";
+
+    return item.dataValues.id;
   };
 
   Item.associate = function (models) {
