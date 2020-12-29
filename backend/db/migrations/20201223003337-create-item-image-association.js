@@ -1,37 +1,39 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('ItemImageAssociations', {
+    return queryInterface.createTable("ItemImageAssociations", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       itemId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Items"}
+        references: { model: "Items" },
       },
       imageId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Images"}
+        references: { model: "Images" },
       },
       primaryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn("now"),
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('ItemImageAssociations');
-  }
+    return queryInterface.dropTable("ItemImageAssociations");
+  },
 };

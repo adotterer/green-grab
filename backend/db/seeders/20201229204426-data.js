@@ -68,10 +68,9 @@ module.exports = {
       { returning: true }
     );
 
-    const randomUser = (userLength) => {
-      return Math.floor(Math.floor(userLength) * Math.random());
+    const randomUser = () => {
+      return Math.floor(Math.floor(users.length) * Math.random());
     };
-
     const items = await queryInterface.bulkInsert(
       "Items",
       [
@@ -79,40 +78,46 @@ module.exports = {
           itemName: "Croton",
           description: lorem.generateParagraphs(4),
           price: 10,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
         {
           itemName: "Rosemary plant, small",
           description: lorem.generateParagraphs(3),
           price: 3,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
         {
           itemName: "Fiddle-leaf fig",
           description:
-            "Act fast, or be forever be basic... get your fiddle-leaf fig before they all sell out.",
+            "Act fast, or forever be basic... get your fiddle-leaf fig before they all sell out.",
           price: 200,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
         {
           itemName: "Variegated monstera",
           description:
             "CHA-CHING there goes your stimulus check-- but at least you will have one of our variegated monsteras! ",
           price: 500,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
         {
           itemName: "Avocados",
           description:
-            "My avocado tree just produces too many of these! Just come get them for FREE!",
+            "My avocado tree just produces too much fruit. There's only so much avocado toast I can eat! Come get them for free!",
           price: null,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
         {
           itemName: "Lemons",
           description: lorem.generateParagraphs(3),
           price: null,
-          sellerId: randomUser,
+          sellerId: randomUser(),
+          location: "Seattle, WA",
         },
       ],
       { returning: true }
@@ -120,7 +125,8 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("Users", null, {});
+    await queryInterface.bulkDelete("Users");
+    await queryInterface.bulkDelete("Items");
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
