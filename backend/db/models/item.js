@@ -11,6 +11,23 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
+
+  Item.offerItem = async function (
+    itemName,
+    itemPrice,
+    itemDescription,
+    userId
+  ) {
+    const item = await Item.create({
+      itemName,
+      price: itemPrice,
+      sellerId: userId,
+      description: itemDescription,
+    });
+
+    return item.dataValues.id;
+  };
+
   Item.associate = function (models) {
     const columnMapping = {
       through: "ItemImageAssociation",
