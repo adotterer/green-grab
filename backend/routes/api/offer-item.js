@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
 const asyncHandler = require("express-async-handler");
-const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const { setTokenCookie, restoreUser } = require("../../utils/auth");
-const { User, Item, Image, ItemImageAssociation } = require("../../db/models");
+const { Item, Image, ItemImageAssociation } = require("../../db/models");
 const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 router.post(
@@ -13,6 +9,7 @@ router.post(
   singleMulterUpload("image"),
   asyncHandler(async function (req, res) {
     const { itemName, itemPrice, itemDescription, userId } = req.body;
+    if (!userId) return;
     // console.log(" ++++ ", itemName, ": itemName");
     // console.log(" ++++ ", userId, ": userId");
 

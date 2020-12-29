@@ -27,12 +27,14 @@
   justify-content: center;
   align-items: center;
   flex-grow: 0.3;
+  text-decoration: none;
 }
 
-#div__logo > h2 {
+.h2__logo a {
   color: white;
-  font-size: 1.9em;
+  font-size: 1.5em;
   font-family: "Skranji", cursive;
+  text-decoration: none;
 }
 
 #div__search {

@@ -8,8 +8,8 @@ module.exports = {
       "Users",
       [
         {
-          email: "demo@user.io",
-          username: "Demo-lition",
+          email: "demo@demo.com",
+          username: "demo_user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {

@@ -47,6 +47,10 @@ textarea {
   font-family: arial;
 }
 
+button {
+  cursor: pointer;
+}
+
 form div,
 hr {
   margin-top: 10px;
