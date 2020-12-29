@@ -1,6 +1,18 @@
 "use strict";
 const faker = require("faker");
 const bcrypt = require("bcryptjs");
+const LoremIpsum = require("lorem-ipsum").LoremIpsum;
+
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 5,
+    min: 3,
+  },
+  wordsPerSentence: {
+    max: 12,
+    min: 4,
+  },
+});
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -51,6 +63,56 @@ module.exports = {
           email: faker.internet.email(),
           username: "Gaylord-Suitcase",
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        },
+      ],
+      { returning: true }
+    );
+
+    const randomUser = (userLength) => {
+      return Math.floor(Math.floor(userLength) * Math.random());
+    };
+
+    const items = await queryInterface.bulkInsert(
+      "Items",
+      [
+        {
+          itemName: "Croton",
+          description: lorem.generateParagraphs(4),
+          price: 10,
+          sellerId: randomUser,
+        },
+        {
+          itemName: "Rosemary plant, small",
+          description: lorem.generateParagraphs(3),
+          price: 3,
+          sellerId: randomUser,
+        },
+        {
+          itemName: "Fiddle-leaf fig",
+          description:
+            "Act fast, or be forever be basic... get your fiddle-leaf fig before they all sell out.",
+          price: 200,
+          sellerId: randomUser,
+        },
+        {
+          itemName: "Variegated monstera",
+          description:
+            "CHA-CHING there goes your stimulus check-- but at least you will have one of our variegated monsteras! ",
+          price: 500,
+          sellerId: randomUser,
+        },
+        {
+          itemName: "Avocados",
+          description:
+            "My avocado tree just produces too many of these! Just come get them for FREE!",
+          price: null,
+          sellerId: randomUser,
+        },
+        {
+          itemName: "Lemons",
+          description: lorem.generateParagraphs(3),
+          price: null,
+          sellerId: randomUser,
         },
       ],
       { returning: true }
