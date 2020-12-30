@@ -8,7 +8,7 @@ function AddItemPage() {
   const sessionUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
-  
+
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0.0);
   const [itemImage, setItemImage] = useState("");
@@ -103,7 +103,7 @@ function AddItemPage() {
         </label>
         <br />
         <div>
-          <img src={itemImage ? URL.createObjectURL(itemImage) : null} />
+          <img className="img__preview" src={itemImage ? URL.createObjectURL(itemImage) : null} />
           <br />
           <label>
             <h3>Upload Image</h3>

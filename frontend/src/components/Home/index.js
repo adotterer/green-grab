@@ -5,27 +5,15 @@ import { fetchAllOffers } from "../../store/offers";
 import "./index.css";
 
 const Offer = ({ theOffer }) => {
-  console.log("THE OFFER", theOffer);
-
-  // const images = theOffer.Images.map((image) => {
-  //   return <img src={image.props.src} />;
-  // });
-
   const imageURLs = theOffer.Images.map((image) => {
     return image.URL;
   });
-
-  const testarr = imageURLs.map((url) => {
-    return url;
-  });
-
-  console.log("testarr", testarr);
 
   return (
     <>
       <div>
         <h3>{theOffer.itemName}</h3>
-        {testarr.map((url) => {
+        {imageURLs.map((url) => {
           return <img className="img__thumbnail" src={url} />;
         })}
         <p>
@@ -52,8 +40,9 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div id="offers-page">
+    <div className="div__container">
       <h2>Check out these offers . . .</h2>
+      <br />
       {!currentOffers && <h3>Loading...........</h3>}
       {currentOffers &&
         currentOffers.map((offer) => {

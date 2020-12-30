@@ -1,9 +1,3 @@
-.div__container {
-  padding-top: 20px;
-  width: 45%;
-  margin: 0 auto;
-}
-
 .input__box {
   padding: 8px;
   font-size: 1.1em;
@@ -108,6 +102,6 @@ input[type="number"]::-webkit-outer-spin-button {
   display: inline-flex;
 }
 
-.div__container img {
+.img__preview {
   max-width: 100%;
 }
