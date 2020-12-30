@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Item.associate = function (models) {
+    Item.belongsTo(models.User, { foreignKey: "sellerId" });
     const columnMapping = {
       through: "ItemImageAssociation",
       otherKey: "imageId",
