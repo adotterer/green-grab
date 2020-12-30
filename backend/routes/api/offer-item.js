@@ -28,11 +28,7 @@ router.post(
 
     const primaryId = imageUrlId;
 
-    const itemImageJoinId = await ItemImageAssociation.addImageToItem(
-      itemId,
-      imageUrlId,
-      primaryId
-    );
+    await ItemImageAssociation.addImageToItem(itemId, imageUrlId, primaryId);
 
     // console.log(" ++++ ", itemImageJoinId, ": itemImageJoinId");
     const item = {

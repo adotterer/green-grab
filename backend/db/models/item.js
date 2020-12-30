@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.FLOAT,
       sellerId: DataTypes.INTEGER,
       buyerId: DataTypes.INTEGER,
+      location: DataTypes.STRING,
     },
     {}
   );
@@ -23,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       price: itemPrice,
       sellerId: userId,
       description: itemDescription,
+      location: "Seattle, WA", // TO DO: ADD ACTUAL LOCATION
     });
 
     return item.dataValues.id;
