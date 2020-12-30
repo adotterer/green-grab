@@ -10,21 +10,21 @@ const Offer = ({ theOffer }) => {
   });
 
   return (
-    <>
-      <div>
-        <h3>{theOffer.itemName}</h3>
+    <div>
+      <div className="div__offer-container">
         {imageURLs.map((url) => {
           return <img className="img__thumbnail" src={url} />;
         })}
+        <h3>{theOffer.itemName}</h3>
+
         <p>
           {!theOffer.price && "FREE"}
           {theOffer.price && `$${theOffer.price}`}
         </p>
         <p>offer from {theOffer.User.username}</p>
-        {/* <img src={theBand.coverPhotoUrl} /> */}
+        <p>{theOffer.location}</p>
       </div>
-      <hr />
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,16 @@
 img.img__thumbnail {
+  min-width: 202px;
   max-width: 200px;
-  max-height: 200px;
+  max-height: 400px;
+  overflow: hidden;
+}
+
+.div__offer-container {
+  border-radius: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  border: 1px solid #d8d8d8;
+  width: 202px;
+
   overflow: hidden;
 }

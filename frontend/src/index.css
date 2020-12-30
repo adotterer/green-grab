@@ -8,6 +8,8 @@ div {
 }
 
 .div__container {
+  position: relative;
+  top: 80px;
   background-color: white;
   padding-top: 20px;
   width: 45%;

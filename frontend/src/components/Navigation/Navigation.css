@@ -1,4 +1,6 @@
 #div__nav-bar {
+  position: fixed;
+  z-index: 50;
   display: flex;
   flex-direction: row;
   width: 100%;
