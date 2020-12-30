@@ -18,12 +18,6 @@ const removeItem = () => {
   };
 };
 
-const uploadImage = () => {
-  return {
-    type: UPLOAD_IMAGE,
-  };
-};
-
 export const offerItem = (item) => async (dispatch) => {
   const {
     itemName,

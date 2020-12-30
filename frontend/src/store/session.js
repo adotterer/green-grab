@@ -26,6 +26,9 @@ export const login = (user) => async (dispatch) => {
       credential,
       password,
     }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   dispatch(setUser(response.data.user));
   return response;
@@ -64,6 +67,9 @@ export const signup = (user) => async (dispatch) => {
       email,
       password,
     }),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
   dispatch(setUser(response.data.user));
   return response;
