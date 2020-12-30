@@ -15,14 +15,16 @@ const Offer = ({ theOffer }) => {
         {imageURLs.map((url) => {
           return <img className="img__thumbnail" src={url} />;
         })}
-        <h3>{theOffer.itemName}</h3>
+        <div className="div__offer-info">
+          <h3>{theOffer.itemName}</h3>
 
-        <p>
-          {!theOffer.price && "FREE"}
-          {theOffer.price && `$${theOffer.price}`}
-        </p>
-        <p>offer from {theOffer.User.username}</p>
-        <p>{theOffer.location}</p>
+          <p className="p__price">
+            {!theOffer.price && "FREE"}
+            {theOffer.price && `$${theOffer.price}`}
+          </p>
+          <p className="p__offer-from">offer from {theOffer.User.username}</p>
+          <p className="p__location">{theOffer.location}</p>
+        </div>
       </div>
     </div>
   );
@@ -40,9 +42,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="div__container">
-      <h2>Check out these offers . . .</h2>
-      <br />
+    <div className="div__container" id="item-board">
       {!currentOffers && <h3>Loading...........</h3>}
       {currentOffers &&
         currentOffers.map((offer) => {

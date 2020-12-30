@@ -1,16 +1,72 @@
 img.img__thumbnail {
-  min-width: 202px;
+  min-width: 208px;
   max-width: 200px;
   max-height: 400px;
   overflow: hidden;
 }
 
+element.style {
+  display: flex;
+  width: 216px;
+  min-width: 216px;
+  display: block;
+}
+
+#item-board {
+  /* background-color: #f2f2f2;
+  border: 2px solid #cccccc; */
+  max-width: 1000px;
+  max-height: 2000px;
+  display: flex;
+  flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  /* width: 70%; */
+}
+
 .div__offer-container {
+  flex: 1 auto;
   border-radius: 0.5rem;
   cursor: pointer;
   position: relative;
   border: 1px solid #d8d8d8;
-  width: 202px;
-
+  width: 208px;
   overflow: hidden;
+  margin: 0.4rem;
+}
+
+.div__offer-info {
+  padding: 0.65rem;
+}
+
+.div__offer-container h3 {
+  font-size: 22px;
+  line-height: 20px;
+  color: #4a4a4a;
+  font-weight: 300;
+  display: block;
+}
+
+.p__price {
+  font-size: 20px;
+  line-height: 36px;
+  color: #4a4a4a;
+  font-weight: 500;
+  display: block;
+}
+
+.p__offer-from {
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.p__location {
+  font-size: 14px;
+  line-height: 26px;
+  color: #969696;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
