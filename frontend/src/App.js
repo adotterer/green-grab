@@ -6,6 +6,7 @@ import AddItemPage from "./components/AddItemPage";
 import SignUpFormPage from "./components/SignUpFormPage";
 import Navigation from "./components/Navigation";
 import ItemPage from "./components/ItemPage";
+import ProfilePage from "./components/ProfilePage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/items/:userId/:itemId">
             <ItemPage />
+          </Route>
+          <Route exact path="/profile/:userId">
+            <ProfilePage />
           </Route>
         </Switch>
       )}

@@ -3,6 +3,7 @@ const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
 const offerItemRouter = require("./offer-item.js");
 const offersRouter = require("./offers.js");
+const profileRouter = require("./profile.js");
 
 router.use("/session", sessionRouter);
 
@@ -11,6 +12,8 @@ router.use("/users", usersRouter);
 router.use("/offer-item", offerItemRouter);
 
 router.use("/offers", offersRouter);
+
+router.use("/profile", profileRouter);
 
 /*********** TEST FRONTEND /API/TEST POST ROUTE *************/
 router.post("/test", function (req, res) {

@@ -24,7 +24,6 @@ const Offer = ({ theOffer }) => {
               {!theOffer.price && "FREE"}
               {theOffer.price && `$${theOffer.price}`}
             </p>
-            {/* <p className="p__offer-from">offer from {theOffer.User.username}</p> */}
             <p className="p__location">{theOffer.location}</p>
           </div>
         </div>

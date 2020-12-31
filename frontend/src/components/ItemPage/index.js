@@ -29,7 +29,7 @@ function ItemPage() {
           </h3>
           <p className="p__offer-from">
             offer from
-            <NavLink class="a__username" exact to={`/profile/${currentOffer.User.id}`}>
+            <NavLink class="a__username" exact to={`/profile/${userId}`}>
               {" " + currentOffer.User.username}
             </NavLink>
           </p>
