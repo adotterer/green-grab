@@ -23,7 +23,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/single", async (req, res, next) => {
   const { id } = req.query;
-  console.log("HERE IS ID!", id);
+
   try {
     const offer = await Item.findByPk(id, {
       include: [
@@ -35,7 +35,6 @@ router.get("/single", async (req, res, next) => {
         },
       ],
     });
-    console.log(offer);
     res.json({ offer: offer });
   } catch (e) {
     next(e);

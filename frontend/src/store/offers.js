@@ -1,7 +1,7 @@
 import { fetch } from "./csrf.js";
 
 const SET_ALL_OFFERS = "offers/setOffers";
-const SET_SINGLE_OFFER = "offers/setOffer";
+const SET_SINGLE_OFFER = "offers/setSingleOffer";
 
 const setOffers = (offers) => {
   return {
@@ -37,10 +37,12 @@ function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case SET_ALL_OFFERS:
-      newState = action.offers;
+      newState = Object.assign({}, state);
+      newState.offers = action.offers;
       return newState;
     case SET_SINGLE_OFFER:
-      newState = action.offer;
+      newState = Object.assign({}, state);
+      newState.offer = action.offer;
       return newState;
     default:
       return state;
