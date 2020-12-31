@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetch } from "../../store/csrf";
 import { useParams, NavLink } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchSingleOffer } from "../../store/offers";
 import "./profilePage.css";
-
-const fetchProfile = async (id) => {
-  return await fetch(`/api/profile?userId=${id}`);
-};
 
 function ProfilePage() {
   const [profile, setProfile] = useState({});
@@ -18,7 +12,7 @@ function ProfilePage() {
 
   useEffect(async () => {
     await fetch(`/api/profile?userId=${userId}`).then(({ data }) => {
-      console.log("data", data.profile);
+      console.log("Items", data.profile.Items);
       setProfile(data.profile);
       setItemArr(data.profile.Items);
     });
@@ -38,26 +32,26 @@ function ProfilePage() {
       {profile && itemArr && (
         <div>
           <h2>{profile.username}</h2>
+          <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
+          <hr />
           <div>
             <p>Check out my items: </p>
-            {!imageURLs && <p>Loading....</p>}
-            {itemArr.map((item) => {
-              return (
-                <div>
-                  <NavLink>
-                    {item.itemName}
-                    <img
-                      className="img__profile__item-pics"
-                      src={item.Images[0].URL}
-                    />
+            {!itemArr && <p>Loading....</p>}
+            {itemArr &&
+              itemArr.map((item) => {
+                return (
+                  <NavLink exact to={`/items/${userId}/${item.id}`}>
+                    <div>
+                      {item.itemName}
+                      <img
+                        className="img__profile__item-pics"
+                        src={item.Images[0].URL}
+                      />
+                      <br />
+                    </div>
                   </NavLink>
-                </div>
-              );
-            })}
-            {/* {imageURLs &&
-              imageURLs.map((url) => {
-                return <img className="img__profile__item-pics" src={url} />;
-              })} */}
+                );
+              })}
           </div>
         </div>
       )}
