@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import * as itemActions from "../../store/items";
 import { useDispatch, useSelector } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { Modal } from "../../context/Modal";
+import LoginForm from "../LoginFormModal/LoginForm";
 import "./addItemPage.css";
 
 function AddItemPage() {
   const sessionUser = useSelector((state) => state.session.user);
-
   const dispatch = useDispatch();
-
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0.0);
   const [itemImage, setItemImage] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   // TO DO: MAKE SO FORM ONLY WORKS WHEN LOGGED IN
   let userId;
@@ -45,6 +45,11 @@ function AddItemPage() {
 
   return (
     <div className="div__container">
+      {!sessionUser && (
+        <Modal onClose={() => setShowModal(false)}>
+          <LoginForm />
+        </Modal>
+      )}
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
@@ -103,7 +108,10 @@ function AddItemPage() {
         </label>
         <br />
         <div>
-          <img className="img__preview" src={itemImage ? URL.createObjectURL(itemImage) : null} />
+          <img
+            className="img__preview"
+            src={itemImage ? URL.createObjectURL(itemImage) : null}
+          />
           <br />
           <label>
             <h3>Upload Image</h3>

@@ -6,7 +6,7 @@ import "./profilePage.css";
 function ProfilePage() {
   const [profile, setProfile] = useState({});
   const [itemArr, setItemArr] = useState([]);
-  const [imageURLs, setImageURLs] = useState([]);
+  // const [imageURLs, setImageURLs] = useState([]);
 
   const { userId } = useParams();
 
@@ -18,13 +18,13 @@ function ProfilePage() {
     });
   }, []);
 
-  useEffect(async () => {
-    // console.log("itemArr : ", itemArr);
-    const urls = itemArr.map((item) => {
-      return item.Images[0].URL;
-    });
-    setImageURLs(urls);
-  }, [itemArr]);
+  // useEffect(async () => {
+  //   // console.log("itemArr : ", itemArr);
+  //   const urls = itemArr.map((item) => {
+  //     return item.Images[0].URL;
+  //   });
+  //   setImageURLs(urls);
+  // }, [itemArr]);
 
   return (
     <div className="div__container">
@@ -35,7 +35,10 @@ function ProfilePage() {
           <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
           <hr />
           <div>
-            <p>Check out my items: </p>
+            <p>
+              <span class="span__num-items">{itemArr.length}</span> items for
+              sale:
+            </p>
             {!itemArr && <p>Loading....</p>}
             {itemArr &&
               itemArr.map((item) => {
@@ -57,10 +60,6 @@ function ProfilePage() {
       )}
     </div>
   );
-
-  // const currentOffer = useSelector((state) => {
-  //   return state.offers.offer;
-  // });
 }
 
 export default ProfilePage;

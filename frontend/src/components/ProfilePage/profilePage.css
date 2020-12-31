@@ -1,3 +1,10 @@
 .img__profile__item-pics {
   max-width: 200px;
 }
+
+.span__num-items {
+  font-family: Arial;
+  font-size: 1.3rem;
+  line-height: 1.3rem;
+  font-weight: 900;
+}
