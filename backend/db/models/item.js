@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Item.associate = function (models) {
     Item.belongsTo(models.User, { foreignKey: "sellerId" });
+
     const columnMapping = {
       through: "ItemImageAssociation",
       otherKey: "imageId",
@@ -39,12 +40,12 @@ module.exports = (sequelize, DataTypes) => {
     };
     Item.belongsToMany(models.Image, columnMapping);
 
-    const columnMapping2 = {
-      through: "CategoryItemAssociation",
-      otherKey: "categoryId",
-      foreignKey: "itemId",
-    };
-    Item.belongsToMany(models.Category, columnMapping2);
+    // const columnMapping2 = {
+    //   through: "CategoryItemAssociation",
+    //   otherKey: "categoryId",
+    //   foreignKey: "itemId",
+    // };
+    // Item.hasMany(models.Category, columnMapping2);
   };
   return Item;
 };

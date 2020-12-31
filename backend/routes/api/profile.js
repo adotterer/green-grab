@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
-const { User, Item, Images } = require("../../db/models");
+const { User, Item, Image } = require("../../db/models");
 // const { singlePublicFileUpload, singleMulterUpload } = require("../../awsS3");
 
 router.get("/", async (req, res, next) => {
@@ -12,6 +12,7 @@ router.get("/", async (req, res, next) => {
       include: [
         {
           model: Item,
+          include: [{ model: Image }],
         },
       ],
       //   {
@@ -19,7 +20,6 @@ router.get("/", async (req, res, next) => {
       //   },
       // ],
     });
-    console.log("PROFILE", profile);
     res.json({ profile: profile });
   } catch (e) {
     next(e);
