@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllOffers } from "../../store/offers";
+import { fetchSingleOffer } from "../../store/offers";
 
 function ItemPage() {
   const dispatch = useDispatch();
   const { itemId } = useParams();
 
   useEffect(async () => {
-    dispatch(fetchAllOffers());
+    dispatch(fetchSingleOffer(itemId));
   }, []);
 
   let currentOffer = useSelector((state) => {
-    return state.offers;
+    return state.offer;
   });
 
-  console.log(currentOffer);
+  console.log("currentOffer", currentOffer);
 
   return (
     <div className="div__container">
