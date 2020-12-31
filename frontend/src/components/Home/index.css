@@ -18,7 +18,7 @@ element.style {
   max-width: 1000px;
   max-height: 2000px;
   display: flex;
-  flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ instead */
+  flex-flow: column wrap; /* Shorthand – you could use ‘flex-direction: column’ and ‘flex-wrap: wrap’ iead */
   justify-content: flex-start;
   align-items: flex-start;
 
@@ -59,6 +59,7 @@ element.style {
 .p__offer-from {
   font-size: 15px;
   line-height: 19px;
+  color: #4a4a4a;
 }
 
 .p__location {

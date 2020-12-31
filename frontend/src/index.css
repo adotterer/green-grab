@@ -7,6 +7,10 @@ div {
   display: block;
 }
 
+a {
+  text-decoration: none;
+}
+
 .div__container {
   position: relative;
   top: 80px;
