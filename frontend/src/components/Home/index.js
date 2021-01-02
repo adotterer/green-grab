@@ -10,13 +10,16 @@ const Offer = ({ theOffer }) => {
     return image.URL;
   });
 
+  console.log(imageURLs, "image URLs");
   return (
     <div>
       <NavLink exact to={`/items/${theOffer.User.id}/${theOffer.id}`}>
         <div className="div__offer-container">
-          {imageURLs.map((url) => {
+          <img className="img__thumbnail" src={imageURLs[0]} />
+          {/* add for future multiple images */}
+          {/* {imageURLs.map((url) => {
             return <img className="img__thumbnail" src={url} />;
-          })}
+          })} */}
           <div className="div__offer-info">
             <h3>{theOffer.itemName}</h3>
 

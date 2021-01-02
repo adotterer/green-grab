@@ -27,6 +27,7 @@ function AddItemPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
+    if (!sessionUser) return;
     dispatch(
       itemActions.offerItem({
         itemName,

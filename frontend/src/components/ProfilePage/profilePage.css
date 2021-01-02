@@ -8,3 +8,7 @@
   line-height: 1.3rem;
   font-weight: 900;
 }
+
+#map {
+  height: 100%;
+}

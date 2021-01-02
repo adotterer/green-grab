@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { fetch } from "../../store/csrf";
 import { useParams, NavLink } from "react-router-dom";
+import GoogleMap from "../GoogleMap";
 import "./profilePage.css";
 
 function ProfilePage() {
   const [profile, setProfile] = useState({});
   const [itemArr, setItemArr] = useState([]);
-  // const [imageURLs, setImageURLs] = useState([]);
 
   const { userId } = useParams();
 
+  const location = {
+    address: "1600 Amphitheatre Parkway, Mountain View, california.",
+    lat: 37.42216,
+    lng: -122.08427,
+  };
+
+  const zoomLevel = 9;
+
   useEffect(async () => {
     await fetch(`/api/profile?userId=${userId}`).then(({ data }) => {
-      console.log("Items", data.profile.Items);
       setProfile(data.profile);
       setItemArr(data.profile.Items);
     });
@@ -33,6 +40,7 @@ function ProfilePage() {
         <div>
           <h2>{profile.username}</h2>
           <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
+          <GoogleMap specs={{ location, zoomLevel }} />
           <hr />
           <div>
             <p>
