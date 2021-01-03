@@ -68,6 +68,78 @@ module.exports = {
       { returning: true }
     );
 
+    const locations = await queryInterface.bulkInsert(
+      "Locations",
+      [
+        {
+          latitude: 47.6062,
+          longitude: -122.3321,
+          city: "Seattle",
+          state: "WA",
+          userId: 1,
+        },
+        {
+          latitude: 47.2529,
+          longitude: -122.4443,
+          city: "Tacoma",
+          state: "WA",
+          userId: 2,
+        },
+        {
+          latitude: 47.6101,
+          longitude: -122.2015,
+          city: "Bellevue",
+          state: "WA",
+          userId: 3,
+        },
+        {
+          latitude: 37.7749,
+          longitude: -122.4194,
+          city: "San Francicsco",
+          state: "CA",
+          userId: 4,
+        },
+        {
+          latitude: 34.0522,
+          longitude: -118.2437,
+          city: "Los Angeles",
+          state: "CA",
+          userId: 5,
+        },
+        {
+          latitude: 40.7128,
+          longitude: -74.006,
+          city: "New York",
+          state: "CA",
+          userId: 6,
+        },
+        {
+          latitude: 41.8781,
+          longitude: -87.6298,
+          city: "Chicago",
+          state: "IL",
+          userId: 7,
+        },
+        {
+          latitude: 25.7617,
+          longitude: -80.1918,
+          city: "Miami",
+          state: "FL",
+          userId: 8,
+        },
+        {
+          latitude: 29.7604,
+          longitude: -95.3698,
+          city: "Houston",
+          state: "TX",
+          userId: 9,
+        },
+      ],
+      {
+        returning: true,
+      }
+    );
+
     // ...incase the seed messes up the primary key numbering...
     const userIdArr = users.map((obj) => {
       return obj.id;
