@@ -40,9 +40,11 @@ function ItemPage() {
             <br />
             <p>{currentOffer.description}</p>
           </div>
+          <br />
+          <hr />
           {Number(sessionUser.id) === Number(userId) && (
             <NavLink exact to={`/items/edit/${userId}/${itemId}`}>
-              <div>Edit item here</div>
+              <button className="button__full-length">Edit item</button>
             </NavLink>
           )}
         </div>

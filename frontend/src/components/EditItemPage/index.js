@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch } from "../../store/csrf";
 import { fetchSingleOffer } from "../../store/offers";
@@ -7,6 +7,7 @@ import { fetchSingleOffer } from "../../store/offers";
 
 function EditItemPage() {
   const dispatch = useDispatch();
+  let history = useHistory();
   const { userId, itemId } = useParams();
   const [itemName, setItemName] = useState();
   const [itemPrice, setItemPrice] = useState();
@@ -31,6 +32,7 @@ function EditItemPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     await fetch("/api/offers/edit", {
       method: "PUT",
       body: JSON.stringify({
@@ -43,11 +45,12 @@ function EditItemPage() {
         "Content-Type": "application/json",
       },
     });
+
+    history.push(`/items/${userId}/${itemId}`);
   };
 
   return (
     <div className="div__container">
-      {sessionUser.id === userId && <h1>The ids match, you can edit!</h1>}
       {!currentOffer && <span>Loading........</span>}
       {currentOffer && (
         <div>

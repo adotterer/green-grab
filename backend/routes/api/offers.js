@@ -25,11 +25,16 @@ router.get("/", async (req, res, next) => {
 router.put("/edit", async (req, res, next) => {
   const { itemName, itemPrice, itemDescription, itemId } = req.body;
   const item = await Item.findByPk(itemId);
-  await item.update({
-    itemName: itemName,
-    price: itemPrice,
-    description: itemDescription,
-  });
+  try {
+    const offer = await item.update({
+      itemName: itemName,
+      price: itemPrice,
+      description: itemDescription,
+    });
+    res.json({ offer: offer });
+  } catch (e) {
+    next(e);
+  }
 });
 
 router.get("/single", async (req, res, next) => {

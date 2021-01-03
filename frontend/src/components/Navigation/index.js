@@ -35,7 +35,7 @@ function Navigation({ isLoaded }) {
         <input class="input__search" type="text" placeholder="Search..." />
         <input class="input__location" type="text" placeholder="Location" />
       </div>
-      <div id="div__nav-links">
+      <div className="div__nav-links">
         <ul>
           <li>
             <NavLink exact to="/">
