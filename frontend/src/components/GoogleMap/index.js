@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import GoogleMapReact from "google-map-react";
 import "./map.css";
+import circle from "./greencircle.png";
 
+function LocationCircle() {
+  // return <img src={circle} />;
+  return <div id="div__circle"></div>;
+}
 const GoogleMap = ({ specs }) => {
-
   const { location, zoomLevel } = specs;
 
   return (
@@ -14,11 +18,11 @@ const GoogleMap = ({ specs }) => {
           defaultCenter={location}
           defaultZoom={zoomLevel}
         >
-          {/* <LocationPin
-          lat={location.lat}
-          lng={location.lng}
-          text={location.address}
-        /> */}
+          <LocationCircle
+            lat={location.lat}
+            lng={location.lng}
+            // text={location.address}
+          />
         </GoogleMapReact>
       </div>
     </div>

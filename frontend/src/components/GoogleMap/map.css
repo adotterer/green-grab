@@ -7,8 +7,20 @@
 }
 
 .google-map {
-  width: 500px;
-  max-height: 200px;
+  width: 20vh;
+  /* height: 100%; */
+}
+
+#div__circle {
+  position: relative;
+  right: 40px;
+  bottom: 30px;
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgb(0, 169, 128);
+  border-radius: 90%;
+  background-color: rgb(0, 169, 128);
+  opacity: 50%;
 }
 
 .pin {
@@ -28,7 +40,8 @@
 
 @media screen and (min-width: 799px) {
   .google-map {
-    height: 80vh;
+    height: 50vh;
+    width: 50vh;
   }
 
   .map-h2 {
@@ -37,7 +50,7 @@
   }
 
   .pin {
-    width: 15vw;
+    width: 10vw;
   }
 
   .pin-icon {
