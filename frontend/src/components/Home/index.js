@@ -9,8 +9,6 @@ const Offer = ({ theOffer }) => {
   const imageURLs = theOffer.Images.map((image) => {
     return image.URL;
   });
-
-  console.log(imageURLs, "image URLs");
   return (
     <div>
       <NavLink exact to={`/items/${theOffer.User.id}/${theOffer.id}`}>
@@ -53,7 +51,6 @@ const HomePage = () => {
   return (
     <div className="div__container" id="item-board">
       {!currentOffers && <h3>Loading...........</h3>}
-      {currentOffers && console.log("currentOffers", currentOffers)}
       {currentOffers &&
         currentOffers.map((offer) => {
           return <Offer theOffer={offer} />;

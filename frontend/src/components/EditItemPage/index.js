@@ -9,11 +9,11 @@ function EditItemPage() {
   const dispatch = useDispatch();
   const { userId, itemId } = useParams();
   const [itemName, setItemName] = useState();
+  const [itemPrice, setItemPrice] = useState();
+  const [itemDescription, setItemDescription] = useState();
   const sessionUser = useSelector((state) => state.session.user);
 
   const currentOffer = useSelector((state) => {
-    console.log("offers bitch", state.offers);
-    // setItemName(state.offers.offer.itemName);
     return state.offers.offer;
   });
 
@@ -24,6 +24,8 @@ function EditItemPage() {
   useEffect(async () => {
     if (currentOffer) {
       setItemName(currentOffer.itemName);
+      setItemPrice(currentOffer.price || 0);
+      setItemDescription(currentOffer.description);
     }
   }, [currentOffer]);
 
@@ -33,6 +35,8 @@ function EditItemPage() {
       method: "PUT",
       body: JSON.stringify({
         itemName,
+        itemPrice,
+        itemDescription,
         itemId,
       }),
       headers: {
@@ -58,8 +62,15 @@ function EditItemPage() {
               }}
             />
             <h3>
-              {!currentOffer.price && "FREE"}
-              {currentOffer.price}
+              <input
+                type="float"
+                value={itemPrice}
+                onChange={(e) => {
+                  setItemPrice(e.target.value);
+                }}
+              />
+              {/* {!currentOffer.price && "FREE"}
+              {currentOffer.price} */}
             </h3>
             <p className="p__offer-from">
               offer from
@@ -70,7 +81,12 @@ function EditItemPage() {
             <div className="div__location">{currentOffer.location}</div>
             <div>
               <br />
-              <p>{currentOffer.description}</p>
+              <textarea
+                className="input__box"
+                value={itemDescription}
+                onChange={(e) => setItemDescription(e.target.value)}
+                required
+              />
             </div>
             <button className="button__full-length" type="submit">
               Submit

@@ -23,13 +23,13 @@ router.get("/", async (req, res, next) => {
 });
 
 router.put("/edit", async (req, res, next) => {
-  console.log(req.body, "req.body");
-  const { itemName, itemId } = req.body;
+  const { itemName, itemPrice, itemDescription, itemId } = req.body;
   const item = await Item.findByPk(itemId);
   await item.update({
     itemName: itemName,
+    price: itemPrice,
+    description: itemDescription,
   });
-  console.log(item, "updated?");
 });
 
 router.get("/single", async (req, res, next) => {
