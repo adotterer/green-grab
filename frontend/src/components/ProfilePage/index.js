@@ -7,7 +7,7 @@ import "./profilePage.css";
 function ProfilePage() {
   const [profile, setProfile] = useState({});
   const [itemArr, setItemArr] = useState([]);
-  const [location, setLocation] = useState();
+  // const [location, setLocation] = useState();
   const [googleObj, setGoogleObj] = useState();
 
   const { userId } = useParams();
@@ -17,7 +17,7 @@ function ProfilePage() {
       console.log(data.profile.Location);
       setProfile(data.profile);
       setItemArr(data.profile.Items);
-      setLocation(data.profile.Location);
+      // setLocation(data.profile.Location);
       const obj = {
         address:
           data.profile.Location.city + ", " + data.profile.Location.state,

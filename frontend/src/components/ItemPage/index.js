@@ -8,6 +8,7 @@ function ItemPage() {
   const dispatch = useDispatch();
   const { userId, itemId } = useParams();
 
+  const sessionUser = useSelector((state) => state.session.user);
   const currentOffer = useSelector((state) => {
     return state.offers.offer;
   });
@@ -16,6 +17,7 @@ function ItemPage() {
     dispatch(fetchSingleOffer(itemId));
   }, []);
 
+  console.log("ids", sessionUser.id, userId);
   return (
     <div className="div__container">
       {!currentOffer && <span>Loading........</span>}
@@ -29,7 +31,7 @@ function ItemPage() {
           </h3>
           <p className="p__offer-from">
             offer from
-            <NavLink class="a__username" exact to={`/profile/${userId}`}>
+            <NavLink className="a__username" exact to={`/profile/${userId}`}>
               {" " + currentOffer.User.username}
             </NavLink>
           </p>
@@ -38,6 +40,11 @@ function ItemPage() {
             <br />
             <p>{currentOffer.description}</p>
           </div>
+          {Number(sessionUser.id) === Number(userId) && (
+            <NavLink exact to={`/items/edit/${userId}/${itemId}`}>
+              <div>They match</div>
+            </NavLink>
+          )}
         </div>
       )}
     </div>
