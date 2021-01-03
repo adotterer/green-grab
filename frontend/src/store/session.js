@@ -59,13 +59,14 @@ const sessionReducer = (state = initialState, action) => {
 };
 
 export const signup = (user) => async (dispatch) => {
-  const { username, email, password } = user;
+  const { username, email, password, location } = user;
   const response = await fetch("/api/users", {
     method: "POST",
     body: JSON.stringify({
       username,
       email,
       password,
+      location,
     }),
     headers: {
       "Content-Type": "application/json",

@@ -10,6 +10,7 @@ function SignUpForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("");
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -19,7 +20,7 @@ function SignUpForm() {
     if (password === confirmPassword) {
       setErrors([]);
       return dispatch(
-        sessionActions.signup({ email, username, password })
+        sessionActions.signup({ email, username, password, location })
       ).catch((res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
@@ -76,6 +77,19 @@ function SignUpForm() {
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+      </label>
+      <label>
+        Location
+        <div>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            placeholder="ie Seattle, Wa"
+            className="input__placeholder__whitebg"
             required
           />
         </div>

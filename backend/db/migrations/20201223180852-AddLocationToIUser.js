@@ -3,7 +3,7 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     // logic for transforming into the new state
-    return queryInterface.addColumn("Items", "location", {
+    return queryInterface.addColumn("Users", "location", {
       type: Sequelize.STRING,
       allowNull: false,
     });
@@ -11,6 +11,6 @@ module.exports = {
 
   down: function (queryInterface, Sequelize) {
     // logic for reverting the changes
-    return queryInterface.removeColumn("Items", "location");
+    return queryInterface.removeColumn("Users", "location");
   },
 };

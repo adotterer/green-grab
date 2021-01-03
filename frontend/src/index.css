@@ -20,3 +20,8 @@ a {
   margin: 0 auto;
   font-family: Lato, sans-serif;
 }
+
+.input__placeholder__whitebg::placeholder {
+  color: rgb(131, 131, 131);
+  font-size: 0.8em;
+}
