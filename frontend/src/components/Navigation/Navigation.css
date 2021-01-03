@@ -99,7 +99,8 @@
   justify-content: space-around;
 }
 
-.div__nav-links a {
+.div__nav-links a,
+.div__nav-links button {
   background: none;
   border: none;
   text-decoration: none;

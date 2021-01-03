@@ -11,7 +11,6 @@ function ItemPage() {
   const [sessionId, setSessionId] = useState(-1);
 
   const sessionUser = useSelector((state) => {
-    // setSessionId(state.session.user);
     return state.session.user;
   });
   const currentOffer = useSelector((state) => {
