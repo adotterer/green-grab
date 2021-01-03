@@ -110,7 +110,7 @@ module.exports = {
           latitude: 40.7128,
           longitude: -74.006,
           city: "New York",
-          state: "CA",
+          state: "NY",
           userId: 6,
         },
         {

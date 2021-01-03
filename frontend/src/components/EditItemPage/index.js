@@ -53,15 +53,18 @@ function EditItemPage() {
         <div>
           <form onSubmit={handleSubmit}>
             <img id="img__primary" src={currentOffer.Images[0].URL} />
-            <h1>{currentOffer.itemName}</h1>
-            <input
-              type="text"
-              value={itemName}
-              onChange={(e) => {
-                setItemName(e.target.value);
-              }}
-            />
-            <h3>
+            {/* <h1>{currentOffer.itemName}</h1> */}
+            <div>
+              Name:
+              <input
+                type="text"
+                value={itemName}
+                onChange={(e) => {
+                  setItemName(e.target.value);
+                }}
+              />
+              <br />
+              Price:
               <input
                 type="float"
                 value={itemPrice}
@@ -69,18 +72,17 @@ function EditItemPage() {
                   setItemPrice(e.target.value);
                 }}
               />
-              {/* {!currentOffer.price && "FREE"}
-              {currentOffer.price} */}
-            </h3>
-            <p className="p__offer-from">
+            </div>
+            {/* <p className="p__offer-from">
               offer from
               <NavLink class="a__username" exact to={`/profile/${userId}`}>
                 {" " + currentOffer.User.username}
               </NavLink>
             </p>
-            <div className="div__location">{currentOffer.location}</div>
+            <div className="div__location">{currentOffer.location}</div> */}
             <div>
               <br />
+              Description:
               <textarea
                 className="input__box"
                 value={itemDescription}
