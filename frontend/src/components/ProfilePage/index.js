@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetch } from "../../store/csrf";
+import { Helmet } from "react-helmet";
 import { useParams, NavLink } from "react-router-dom";
 import GoogleMap from "../GoogleMap";
 import "./profilePage.css";
@@ -37,40 +38,47 @@ function ProfilePage() {
   // }, [itemArr]);
 
   return (
-    <div className="div__container">
-      {!profile && <h2>Loading....</h2>}
-      {profile && itemArr && (
-        <div>
-          <h2>{profile.username}</h2>
-          <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
-          {!googleObj && "loading..."}
-          {googleObj && <GoogleMap googleObj={googleObj} />}
-          <hr />
-          <div>
-            <p>
-              <span class="span__num-items">{itemArr.length}</span> items for
-              sale:
-            </p>
-            {!itemArr && <p>Loading....</p>}
-            {itemArr &&
-              itemArr.map((item) => {
-                return (
-                  <NavLink exact to={`/items/${userId}/${item.id}`}>
-                    <div>
-                      {item.itemName}
-                      <img
-                        className="img__profile__item-pics"
-                        src={item.Images[0].URL}
-                      />
-                      <br />
-                    </div>
-                  </NavLink>
-                );
-              })}
-          </div>
-        </div>
+    <>
+      {profile.username && (
+        <Helmet>
+          <title>GreenGrab - {profile.username}</title>
+        </Helmet>
       )}
-    </div>
+      <div className="div__container">
+        {!profile && <h2>Loading....</h2>}
+        {profile && itemArr && (
+          <div>
+            <h2>{profile.username}</h2>
+            <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
+            {!googleObj && "loading..."}
+            {googleObj && <GoogleMap googleObj={googleObj} />}
+            <hr />
+            <div>
+              <p>
+                <span class="span__num-items">{itemArr.length}</span> items for
+                sale:
+              </p>
+              {!itemArr && <p>Loading....</p>}
+              {itemArr &&
+                itemArr.map((item) => {
+                  return (
+                    <NavLink exact to={`/items/${userId}/${item.id}`}>
+                      <div>
+                        {item.itemName}
+                        <img
+                          className="img__profile__item-pics"
+                          src={item.Images[0].URL}
+                        />
+                        <br />
+                      </div>
+                    </NavLink>
+                  );
+                })}
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

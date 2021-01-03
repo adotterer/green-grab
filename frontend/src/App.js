@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import HomePage from "./components/Home";
 import AddItemPage from "./components/AddItemPage";
 import SignUpFormPage from "./components/SignUpFormPage";
@@ -23,12 +24,21 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/">
+            <Helmet>
+              <title>GreenGrab</title>
+            </Helmet>
             <HomePage />
           </Route>
           <Route path="/signup">
             <SignUpFormPage />
+            <Helmet>
+              <title>GreenGrab - Sign Up</title>
+            </Helmet>
           </Route>
           <Route exact path="/offer-item">
+            <Helmet>
+              <title>GreenGrab - Offer Item</title>
+            </Helmet>
             <AddItemPage />
           </Route>
           <Route exact path="/items/:userId/:itemId">
