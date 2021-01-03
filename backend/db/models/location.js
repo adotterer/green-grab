@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
   );
   /*********** LOCATION METHODS *************/
   Location.addUserLocation = async function (locObj) {
-
     const { latitude, longitude, city, state, userId } = locObj;
 
     const userLocation = await Location.create({

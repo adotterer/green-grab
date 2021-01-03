@@ -35,7 +35,6 @@ router.post(
     const locObj = await createLocationObj(location);
     const user = await User.signup({ email, username, password, locObj });
     locObj.userId = user.id;
-    console.log("signup api", locObj);
 
     await Location.addUserLocation(locObj);
 
