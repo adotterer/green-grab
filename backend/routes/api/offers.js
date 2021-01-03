@@ -22,6 +22,16 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.put("/edit", async (req, res, next) => {
+  console.log(req.body, "req.body");
+  const { itemName, itemId } = req.body;
+  const item = await Item.findByPk(itemId);
+  await item.update({
+    itemName: itemName,
+  });
+  console.log(item, "updated?");
+});
+
 router.get("/single", async (req, res, next) => {
   const { id } = req.query;
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { fetch } from "../../store/csrf";
 import { fetchSingleOffer } from "../../store/offers";
 // import "./itemPage.css";
 
@@ -28,6 +29,16 @@ function EditItemPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    await fetch("/api/offers/edit", {
+      method: "PUT",
+      body: JSON.stringify({
+        itemName,
+        itemId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   };
 
   return (

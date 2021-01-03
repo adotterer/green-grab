@@ -42,7 +42,7 @@ function ItemPage() {
           </div>
           {Number(sessionUser.id) === Number(userId) && (
             <NavLink exact to={`/items/edit/${userId}/${itemId}`}>
-              <div>They match</div>
+              <div>Edit item here</div>
             </NavLink>
           )}
         </div>
