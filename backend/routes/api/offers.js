@@ -1,7 +1,7 @@
 const express = require("express");
 // const { restoreUser } = require("../../../frontend/src/store/session");
 const router = express.Router();
-const { Item, User, Image } = require("../../db/models");
+const { Item, User, Image, Location } = require("../../db/models");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -12,6 +12,7 @@ router.get("/", async (req, res, next) => {
         },
         {
           model: User,
+          include: { model: Location },
         },
       ],
     });

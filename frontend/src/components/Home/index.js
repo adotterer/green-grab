@@ -27,7 +27,11 @@ const Offer = ({ theOffer }) => {
               {!theOffer.price && "FREE"}
               {theOffer.price && `$${theOffer.price}`}
             </p>
-            <p className="p__location">{theOffer.location}</p>
+            <p className="p__location">
+              {theOffer.User.Location.city +
+                ", " +
+                theOffer.User.Location.state}
+            </p>
           </div>
         </div>
       </NavLink>
