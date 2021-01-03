@@ -7,18 +7,10 @@ import "./profilePage.css";
 function ProfilePage() {
   const [profile, setProfile] = useState({});
   const [itemArr, setItemArr] = useState([]);
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState();
   const [googleObj, setGoogleObj] = useState();
 
   const { userId } = useParams();
-
-  // const location = {
-  //   address: "1600 Amphitheatre Parkway, Mountain View, california.",
-  //   lat: 37.42216,
-  //   lng: -122.08427,
-  // };
-
-  const zoomLevel = 9;
 
   useEffect(async () => {
     await fetch(`/api/profile?userId=${userId}`).then(({ data }) => {
@@ -26,17 +18,15 @@ function ProfilePage() {
       setProfile(data.profile);
       setItemArr(data.profile.Items);
       setLocation(data.profile.Location);
+      const obj = {
+        address:
+          data.profile.Location.city + ", " + data.profile.Location.state,
+        lat: data.profile.Location.latitude,
+        lng: data.profile.Location.longitude,
+      };
+      setGoogleObj(obj);
     });
   }, []);
-
-  useEffect(async () => {
-    const obj = {
-      address: location.city + ", " + location.state,
-      lat: location.latitude,
-      lng: location.longitude,
-    };
-    setGoogleObj(obj);
-  }, [location]);
 
   // useEffect(async () => {
   //   // console.log("itemArr : ", itemArr);
@@ -54,7 +44,7 @@ function ProfilePage() {
           <h2>{profile.username}</h2>
           <h3>{itemArr[0] && <p>{itemArr[0].location}</p>}</h3>
           {!googleObj && "loading..."}
-          {googleObj && <GoogleMap specs={{ googleObj, zoomLevel }} />}
+          {googleObj && <GoogleMap googleObj={googleObj} />}
           <hr />
           <div>
             <p>

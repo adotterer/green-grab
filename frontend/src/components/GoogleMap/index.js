@@ -6,33 +6,8 @@ function LocationCircle() {
   // return <img src={circle} />;
   return <div id="div__circle"></div>;
 }
-const GoogleMap = ({ specs }) => {
-  // const [googleObj, setGoogleObj] = useState({});
-  const { googleObj, zoomLevel } = specs;
-
-  // useEffect(async () => {
-  //   const obj = {
-  //     address: location.city + ", " + location.state,
-  //     lat: location.latitude,
-  //     lng: location.longitude,
-  //   };
-  //   setGoogleObj(obj);
-  //   console.log("use effect bitch", googleObj);
-  // }, [location]);
-
-  const locationExample = {
-    address: "1600 Amphitheatre Parkway, Mountain View, california.",
-    lat: 47.6062095,
-    lng: -122.3320708,
-  };
-  console.log("googleObj", googleObj);
-  // const googleObj = {
-  //   address: location.city + ", " + location.state,
-  //   lat: 47.6062095,
-  //   lng: -122.3320708,
-  // };
-
-  // console.log("googleobj", googleObj);
+const GoogleMap = ({ googleObj }) => {
+  console.log("googleobj from GoogleMap", googleObj);
 
   return (
     <div className="map">
@@ -43,14 +18,14 @@ const GoogleMap = ({ specs }) => {
             bootstrapURLKeys={{
               key: "AIzaSyDT_KxxLpoLwmlk3sXLpayAvW9z9_RodME",
             }}
-            defaultCenter={locationExample}
-            defaultZoom={zoomLevel}
+            defaultCenter={googleObj}
+            defaultZoom={11}
           >
-            {/* <LocationCircle
-            lat={location.latitude}
-            lng={location.longitude}
-            // text={location.address}
-          /> */}
+            <LocationCircle
+              lat={googleObj.lat}
+              lng={googleObj.lng}
+              // text={location.address}
+            />
           </GoogleMapReact>
         </div>
       )}
