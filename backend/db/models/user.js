@@ -32,10 +32,6 @@ module.exports = (sequelize, DataTypes) => {
           len: [60, 60],
         },
       },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     {
       defaultScope: {
@@ -81,13 +77,12 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope("currentUser").findByPk(user.id);
     }
   };
-  User.signup = async function ({ username, email, password, location }) {
+  User.signup = async function ({ username, email, password, locObj }) {
     const hashedPassword = bcrypt.hashSync(password);
     const user = await User.create({
       username,
       email,
       hashedPassword,
-      location,
     });
     return await User.scope("currentUser").findByPk(user.id);
   };
@@ -95,6 +90,7 @@ module.exports = (sequelize, DataTypes) => {
   User.associate = function (models) {
     // associations can be defined here
     User.hasMany(models.Item, { foreignKey: "sellerId" });
+    User.hasOne(models.Location, { foreignKey: "userId" });
   };
   return User;
 };

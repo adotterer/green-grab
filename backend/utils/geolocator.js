@@ -12,18 +12,18 @@ const options = {
 const geocoder = NodeGeocoder(options);
 
 // Using callback
-geocoder
-  .geocode("monroeville pa")
-  .then((res) => {
-    // console.log(res);
-    // grab the lat and long
-    console.log(res[0].city); // city
-    console.log(res[0].administrativeLevels.level1short); // abbreviated state
-    // return res;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+// geocoder
+//   .geocode("monroeville pa")
+//   .then((res) => {
+//     // console.log(res);
+//     // grab the lat and long
+//     console.log(res[0].city); // city
+//     console.log(res[0].administrativeLevels.level1short); // abbreviated state
+//     // return res;
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 const createLocationObj = async (location) => {
   const res = await geocoder.geocode(location);
@@ -40,4 +40,4 @@ const createLocationObj = async (location) => {
   return { latitude, longitude, city, state };
 };
 
-export default createLocationObj;
+module.exports = { createLocationObj };

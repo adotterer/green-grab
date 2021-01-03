@@ -3,7 +3,8 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Location } = require("../../db/models");
+const { createLocationObj } = require("../../utils/geolocator");
 
 const router = express.Router();
 
@@ -31,7 +32,12 @@ router.post(
   validateSignup,
   asyncHandler(async (req, res) => {
     const { email, password, username, location } = req.body;
-    const user = await User.signup({ email, username, password, location });
+    const locObj = await createLocationObj(location);
+    const user = await User.signup({ email, username, password, locObj });
+    locObj.userId = user.id;
+    console.log("signup api", locObj);
+
+    await Location.addUserLocation(locObj);
 
     await setTokenCookie(res, user);
 
