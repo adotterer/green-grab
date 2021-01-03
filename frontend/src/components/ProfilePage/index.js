@@ -41,7 +41,7 @@ function ProfilePage() {
     <>
       {profile.username && (
         <Helmet>
-          <title>GreenGrab - {profile.username}</title>
+          <title>{profile.username}</title>
         </Helmet>
       )}
       <div className="div__container">

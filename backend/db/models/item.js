@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.FLOAT,
       sellerId: DataTypes.INTEGER,
       buyerId: DataTypes.INTEGER,
-
     },
     {}
   );
@@ -23,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       itemName,
       price: itemPrice,
       sellerId: userId,
-      description: itemDescription
+      description: itemDescription,
     });
 
     return item.dataValues.id;
@@ -36,6 +35,8 @@ module.exports = (sequelize, DataTypes) => {
       through: "ItemImageAssociation",
       otherKey: "imageId",
       foreignKey: "itemId",
+      onDelete: "CASCADE",
+      hooks: true,
     };
     Item.belongsToMany(models.Image, columnMapping);
 

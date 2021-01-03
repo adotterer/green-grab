@@ -57,4 +57,14 @@ router.get("/single", async (req, res, next) => {
   }
 });
 
+router.delete("/delete", async (req, res, next) => {
+  const { itemId } = req.body;
+  try {
+    const destroy = await Item.destroy({ where: { id: itemId } });
+    res.json(destroy);
+  } catch (e) {
+    next(e);
+  }
+});
+
 module.exports = router;

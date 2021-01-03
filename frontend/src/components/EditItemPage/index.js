@@ -3,7 +3,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch } from "../../store/csrf";
 import { fetchSingleOffer } from "../../store/offers";
-// import "./itemPage.css";
+import "./editItemPage.css";
 
 function EditItemPage() {
   const dispatch = useDispatch();
@@ -47,6 +47,20 @@ function EditItemPage() {
     });
 
     history.push(`/items/${userId}/${itemId}`);
+  };
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    await fetch("/api/offers/delete", {
+      method: "DELETE",
+      body: JSON.stringify({
+        itemId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    history.push(`/`);
   };
 
   return (
@@ -95,6 +109,12 @@ function EditItemPage() {
             </div>
             <button className="button__full-length" type="submit">
               Submit
+            </button>
+          </form>
+          <br />
+          <form onClick={handleDelete}>
+            <button className="button__full-length delete" type="submit">
+              DELETE
             </button>
           </form>
         </div>

@@ -31,7 +31,7 @@ function ItemPage() {
     <>
       {currentOffer && (
         <Helmet>
-          <title>GreenGrab - {currentOffer.itemName}</title>
+          <title>{currentOffer.itemName}</title>
         </Helmet>
       )}
       <div className="div__container">

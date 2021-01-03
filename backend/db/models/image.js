@@ -21,6 +21,8 @@ module.exports = (sequelize, DataTypes) => {
       through: "ItemImageAssociation",
       otherKey: "itemId",
       foreignKey: "imageId",
+      onDelete: "CASCADE",
+      hooks: true,
     };
     Image.belongsToMany(models.Item, columnMapping);
   };
