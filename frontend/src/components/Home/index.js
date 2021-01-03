@@ -41,7 +41,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const currentOffers = useSelector((state) => {
-    return state.offers.offers;
+    return state.offers.offers.reverse();
   });
 
   useEffect(async () => {

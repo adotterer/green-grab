@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as itemActions from "../../store/items";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal } from "../../context/Modal";
 import LoginForm from "../LoginFormModal/LoginForm";
@@ -8,6 +9,7 @@ import "./addItemPage.css";
 function AddItemPage() {
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
   const [itemName, setItemName] = useState("");
   const [itemPrice, setItemPrice] = useState(0.0);
   const [itemImage, setItemImage] = useState("");
@@ -28,7 +30,7 @@ function AddItemPage() {
     e.preventDefault();
     setErrors([]);
     if (!sessionUser) return;
-    dispatch(
+    await dispatch(
       itemActions.offerItem({
         itemName,
         itemPrice,
@@ -42,6 +44,8 @@ function AddItemPage() {
     setItemImage(null);
     setItemDescription("");
     e.target.value = null;
+
+    history.push(`/profile/${sessionUser.id}`);
   };
 
   return (
