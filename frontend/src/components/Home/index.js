@@ -50,6 +50,8 @@ const HomePage = () => {
     dispatch(fetchAllOffers());
   }, []);
 
+
+  
   return (
     <div className="div__container" id="item-board">
       {!currentOffers && <h3>Loading...........</h3>}
