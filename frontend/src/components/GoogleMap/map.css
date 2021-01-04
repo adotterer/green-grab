@@ -20,7 +20,7 @@
   border-radius: 90%;
   background-color: rgb(0, 169, 128);
   opacity: 50%;
-  z-index: 2;
+  z-index: 4;
 }
 
 .pin {
