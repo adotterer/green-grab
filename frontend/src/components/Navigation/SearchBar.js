@@ -8,7 +8,6 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log("hello");
 
     await fetch(`/api/search/location?location=${searchLocation}`)
       .then(({ data }) => {
