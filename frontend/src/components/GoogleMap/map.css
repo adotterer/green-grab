@@ -19,7 +19,7 @@
   border: 2px solid rgb(0, 169, 128);
   border-radius: 90%;
   background-color: rgb(0, 169, 128);
-  opacity: 50%;
+  opacity: 0.5;
   z-index: 4;
 }
 
