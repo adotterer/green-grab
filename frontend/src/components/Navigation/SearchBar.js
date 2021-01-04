@@ -11,7 +11,7 @@ function SearchBar() {
 
     await fetch(`/api/search/location?location=${searchLocation}`)
       .then(({ data }) => {
-        console.log("data", data);
+        console.log("should be location data", data);
       })
       .catch((e) => {
         console.log(e);
