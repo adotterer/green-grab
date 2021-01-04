@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import ItemPage from "./components/ItemPage";
 import ProfilePage from "./components/ProfilePage";
 import EditItemPage from "./components/EditItemPage";
+import SearchPage from "./components/SearchPage";
 import * as sessionActions from "./store/session";
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
           </Route>
           <Route exact path="/items/edit/:userId/:itemId">
             <EditItemPage />
+          </Route>
+          <Route path="/search">
+            <SearchPage />
           </Route>
         </Switch>
       )}

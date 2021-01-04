@@ -42,6 +42,7 @@
 #div__search {
   display: flex;
   justify-content: flex-end;
+  margin-top: 14px;
   flex-grow: 0.4;
 }
 
@@ -78,7 +79,6 @@
   flex-grow: 0.1;
   background-color: rgb(27, 129, 102);
   border: solid 9px rgb(27, 129, 102);
-  border-radius: 0 10px 10px 0;
 }
 
 .div__nav-links {
@@ -163,4 +163,13 @@ button.button__nav {
   align-self: center;
   background-color: rgb(0, 169, 128);
   padding: 8px;
+}
+
+#button__search-go {
+  padding: 8px;
+  color: white;
+  font-size: 1.2em;
+  border: 1px solid rgb(1, 181, 136);
+  background-color: rgb(0, 210, 157);
+  border-radius: 0 10px 10px 0;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import SearchBar from "./SearchBar";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
 import "./Navigation.css";
@@ -31,10 +32,7 @@ function Navigation({ isLoaded }) {
           </NavLink>
         </h2>
       </div>
-      <div id="div__search">
-        <input class="input__search" type="text" placeholder="Search..." />
-        <input class="input__location" type="text" placeholder="Location" />
-      </div>
+      <SearchBar />
       <div className="div__nav-links">
         <ul>
           <li>
