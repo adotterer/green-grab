@@ -11,10 +11,8 @@
     <br />
     <a href="https://github.com/adotterer/green-grab/wiki"><strong>Wiki »</strong></a>
     <br />
+   <a href="https://greengrab.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
-    <a href="">View Demo [ADD LINK]</a>
-    ·
-    <a href="">Report Bug [ADD LINK]</a>
   </p>
 </p>
 
