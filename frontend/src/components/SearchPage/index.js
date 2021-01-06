@@ -7,26 +7,19 @@ function SearchPage() {
     console.log("STATE", state.nearbyItems);
     return state.nearbyItems.nearbyItems;
   });
-  const dispatch = useDispatch();
   const [searchResults, setSearchResults] = useState();
 
-  // const sessionSearch = useSelector((state) => {
-  //   // setSearchResults(state.session.nearbyItems);
-  //   return state.session.nearbyItems;
-  // });
-
-  // useEffect(async () => {
-  //   if (sessionSearch) {
-  //     // console.log("sessionSearch", sessionSearch[0].city);
-  //     setSearchResults(sessionSearch);
-  //   }
-  // });
+  useEffect(async () => {
+    if (sessionSearch) {
+      setSearchResults(sessionSearch);
+    }
+  }, [sessionSearch]);
 
   return (
     <div className="div__container">
-      {/* {sessionSearch && <h2>{sessionSearch[0].city}</h2>} */}
-      {sessionSearch &&
-        sessionSearch.map((result) => {
+      {!searchResults && <h1>Loading.....</h1>}
+      {searchResults &&
+        searchResults.map((result) => {
           return <h1>City: {result.city}</h1>;
         })}
     </div>
