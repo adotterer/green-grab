@@ -8,25 +8,24 @@ function SearchBar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchLocation, setSearchLocation] = useState();
+
   const [errors, setErrors] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
-    return( 
-      dispatch(searchActions.search(searchLocation))
-        // .then((res) => {
-        //   console.log(res);
-        // })
-        .catch((res) => {
-          if (res.data && res.data.errors) setErrors(res.data.errors);
-        })
-    );
+    dispatch(searchActions.search(searchLocation))
+      // .then((res) => {
+      //   console.log(res);
+      // })
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+    history.push("/search");
   };
 
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
-    history.push("/search");
   };
 
   return (
