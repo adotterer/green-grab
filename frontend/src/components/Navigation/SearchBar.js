@@ -13,7 +13,7 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
+    console.log("searchLocation", searchLocation);
     dispatch(searchActions.search(searchLocation))
       // .then((res) => {
       //   console.log(res);

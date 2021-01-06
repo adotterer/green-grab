@@ -13,7 +13,8 @@ export const search = (searchLocation) => async (dispatch) => {
   const response = await fetch(
     `/api/search/location?location=${searchLocation}`
   );
-  console.log("hello from search thunk", response.data.nearbyItems);
+
+  console.log("hello from search thunk", response);
   dispatch(setSearch(response.data.nearbyItems));
   return response;
 };

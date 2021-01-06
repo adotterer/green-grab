@@ -10,7 +10,9 @@ const HomePage = () => {
 
   const currentOffers = useSelector((state) => {
     if (Array.isArray(state.offers.offers)) {
-      return state.offers.offers.reverse();
+      const reversedOffers = state.offers.offers.reverse();
+      console.log(reversedOffers, "reveresed Offers");
+      return reversedOffers;
     }
   });
 

@@ -20,10 +20,32 @@ router.get("/location", async (req, res, next) => {
         latitude: { [Op.between]: [latitude - 2, latitude + 2] },
         longitude: { [Op.between]: [longitude - 2, longitude + 2] },
       },
-      include: { model: User },
+      include: {
+        model: User,
+        include: { model: Item, include: { model: Image } },
+      },
       order: [["createdAt", "DESC"]],
       limit: 100,
     });
+    nearbyItems.forEach((item, i) => {
+      console.log("THIS IS nearbyItems[i]");
+      const locationCopy = {
+        city: item.city,
+        state: item.state,
+      };
+      console.log(locationCopy, "locationCopy btch");
+      nearbyItems[i] = {
+        ...item.dataValues.User.Items,
+        User: { Location: locationCopy },
+      };
+      // nearbyItems[i].Item.User = { name: "booblepop" };
+      // item.dataValues.Images = item.dataValues.
+      // delete item.dataValues.User.Items;
+    });
+    console.log(nearbyItems, "nearbyItems mean bunny");
+    // nearbyItems[0].dataValues.Items = nearbyItems[0].dataValues.User.Items;
+
+    // console.log("NEARBYITEMS[0] MEAN BUNNY", nearbyItems[0].dataValues.User);
     res.json({ nearbyItems });
   } catch (e) {
     next(e);

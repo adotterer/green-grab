@@ -16,6 +16,7 @@ router.get("/", async (req, res, next) => {
         },
       ],
     });
+    console.log("offers before they are sent back to frontend", offers);
     res.json({ offers: offers });
   } catch (e) {
     next(e);
