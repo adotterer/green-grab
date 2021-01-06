@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { fetch } from "../../store/csrf";
+import { useDispatch } from "react-redux";
+import * as searchActions from "../../store/search";
 
 function SearchBar() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [searchLocation, setSearchLocation] = useState();
+  const [errors, setErrors] = useState([]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
 
-    await fetch(`/api/search/location?location=${searchLocation}`)
-      .then(({ data }) => {
-        console.log("should be location data", data);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    return( 
+      dispatch(searchActions.search(searchLocation))
+        // .then((res) => {
+        //   console.log(res);
+        // })
+        .catch((res) => {
+          if (res.data && res.data.errors) setErrors(res.data.errors);
+        })
+    );
   };
 
   const loadSearchPage = (e) => {

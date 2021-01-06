@@ -3,12 +3,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import itemReducer from "./items";
 import offersReducer from "./offers";
-// import offerReducer from "./offers";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   item: itemReducer,
   offers: offersReducer,
+  nearbyItems: searchReducer,
 });
 
 let enhancer;
