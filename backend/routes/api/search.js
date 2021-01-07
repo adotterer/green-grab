@@ -41,7 +41,10 @@ router.get("/location", async (req, res, next) => {
         state: item.state,
       };
       item.dataValues.User.Items.forEach((item) => {
-        item.dataValues.User = { Location: locationCopy };
+        item.dataValues.User = {
+          id: nearbyLocations[i].User.id,
+          Location: locationCopy,
+        };
         nearbyItems.push(item);
       });
       // console.log("itemArr[1]", itemArr[1]);
