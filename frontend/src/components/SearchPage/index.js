@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { search } from "../../store/search";
+import Offer from "../Offer";
 
 function SearchPage() {
   const sessionSearch = useSelector((state) => {
@@ -20,7 +21,12 @@ function SearchPage() {
       {!searchResults && <h1>Loading.....</h1>}
       {searchResults &&
         searchResults.map((result) => {
-          return <h1>City: {result.city}</h1>;
+          console.log(result, "result");
+          if (result.sellerId) {
+            return <span>Exists</span>;
+          } else {
+            return <span>Does not exist</span>;
+          }
         })}
     </div>
   );

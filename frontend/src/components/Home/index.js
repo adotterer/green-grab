@@ -26,7 +26,8 @@ const HomePage = () => {
       {currentOffers &&
         currentOffers.map((offer) => {
           return <Offer theOffer={offer} />;
-        })}
+        })
+      }
     </div>
   );
 };
