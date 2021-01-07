@@ -1,9 +1,5 @@
 <!-- PROJECT LOGO -->
 <br />
-<p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h1 align="center">GreenGrab</h3>
 
@@ -11,10 +7,8 @@
     <br />
     <a href="https://github.com/adotterer/green-grab/wiki"><strong>Wiki »</strong></a>
     <br />
+   <a href="https://greengrab.herokuapp.com/"><strong>View Demo »</strong></a>
     <br />
-    <a href="">View Demo [ADD LINK]</a>
-    ·
-    <a href="">Report Bug [ADD LINK]</a>
   </p>
 </p>
 
