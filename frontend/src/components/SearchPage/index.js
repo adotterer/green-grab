@@ -21,7 +21,6 @@ function SearchPage() {
       {!searchResults && <h1>Loading.....</h1>}
       {searchResults &&
         searchResults.map((result) => {
-          // console.log(result, "result");
           if (result.sellerId) {
             return <Offer theOffer={result} />;
           } else {

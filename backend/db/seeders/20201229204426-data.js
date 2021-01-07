@@ -64,6 +64,16 @@ module.exports = {
           username: "Gaylord-Suitcase",
           hashedPassword: bcrypt.hashSync(faker.internet.password()),
         },
+        {
+          email: faker.internet.email(),
+          username: "Mean_bunny",
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        },
+        {
+          email: faker.internet.email(),
+          username: "someones_hamster",
+          hashedPassword: bcrypt.hashSync(faker.internet.password()),
+        },
       ],
       { returning: true }
     );
@@ -134,6 +144,20 @@ module.exports = {
           state: "TX",
           userId: 9,
         },
+        {
+          latitude: 21.4389,
+          longitude: -158.0001,
+          city: "O‘ahu",
+          state: "HI",
+          userId: 10,
+        },
+        {
+          latitude: 21.3069,
+          longitude: -157.8583,
+          city: "Honolulu",
+          state: "HI",
+          userId: 11,
+        },
       ],
       {
         returning: true,
@@ -151,7 +175,6 @@ module.exports = {
 
     const items = await queryInterface.bulkInsert(
       "Items",
-      // KEEP IN ALPHABETICAL ORDER!
       [
         {
           itemName: "Avocados",
@@ -216,6 +239,24 @@ module.exports = {
           price: 500,
           sellerId: userIdArr[randomUser()],
         },
+        {
+          itemName: "Cucumba",
+          description: lorem.generateParagraphs(3),
+          price: 2,
+          sellerId: userIdArr[randomUser()],
+        },
+        {
+          itemName: "Oranges",
+          description: lorem.generateParagraphs(3),
+          price: null,
+          sellerId: userIdArr[randomUser()],
+        },
+        {
+          itemName: "String of Bananas in hanging pot",
+          description: lorem.generateParagraphs(3),
+          price: 25,
+          sellerId: userIdArr[randomUser()],
+        },
       ],
       { returning: true }
     );
@@ -223,7 +264,6 @@ module.exports = {
     const images = await queryInterface.bulkInsert(
       "Images",
       [
-        // KEEP IN ALPHABETICAL ORDER!
         {
           // AVOCADOS
           URL:
@@ -273,6 +313,21 @@ module.exports = {
           // VARIEGATED MONSTERA
           URL:
             "https://green-grab-bucket.s3-us-west-1.amazonaws.com/variegated_monstera.jpeg",
+        },
+        {
+          // Cucumber
+          URL:
+            "https://green-grab-bucket.s3-us-west-1.amazonaws.com/47A34D78-8777-4DC8-A939-60B1A0F672C2_1_105_c.jpeg",
+        },
+        {
+          // Oranges
+          URL:
+            "https://green-grab-bucket.s3-us-west-1.amazonaws.com/oranges.jpg",
+        },
+        {
+          // STring of bananas
+          URL:
+            "https://green-grab-bucket.s3-us-west-1.amazonaws.com/1609290471736.jpg",
         },
       ],
       { returning: true }

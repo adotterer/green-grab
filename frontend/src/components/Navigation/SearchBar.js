@@ -13,28 +13,18 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log("searchLocation", searchLocation);
-    dispatch(searchActions.search(searchLocation))
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      .catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      });
+    dispatch(searchActions.search(searchLocation)).catch((res) => {
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
     history.push("/search");
     setSearchLocation("");
   };
 
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
-    console.log("searchLocation", searchLocation);
-    dispatch(searchActions.search(searchLocation))
-      // .then((res) => {
-      //   console.log(res);
-      // })
-      .catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      });
+    // dispatch(searchActions.search(searchLocation)).catch((res) => {
+    //   if (res.data && res.data.errors) setErrors(res.data.errors);
+    // });
     history.push("/search");
   };
 
