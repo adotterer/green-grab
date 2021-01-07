@@ -6,10 +6,6 @@ const { createLocationObj } = require("../../utils/geolocator");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
-router.get("/", async (req, res, next) => {
-  console.log("helloooooo");
-});
-
 router.get("/location", async (req, res, next) => {
   const { location } = req.query;
   const locObj = await createLocationObj(location);
@@ -47,23 +43,8 @@ router.get("/location", async (req, res, next) => {
         };
         nearbyItems.push(item);
       });
-      // console.log("itemArr[1]", itemArr[1]);
-      // nearbyItems[i] = {
-      //   ...item.dataValues.User.Items,
-      // };
-      // console.log(
-      //   "type of item.dataValues.User.Items",
-      //   Array.isArray(item.dataValues.User.Items),
-      //   item.dataValues.User.Items[0]
-      // );
-      // nearbyItems[i].Item.User = { name: "booblepop" };
-      // item.dataValues.Images = item.dataValues.
-      // delete item.dataValues.User.Items;
     });
-    // console.log("just give me what i want", itemArr);
-    // nearbyItems[0].dataValues.Items = nearbyItems[0].dataValues.User.Items;
 
-    // console.log("NEARBYITEMS[0] MEAN BUNNY", nearbyItems[0].dataValues.User);
     res.json({ nearbyItems });
   } catch (e) {
     next(e);

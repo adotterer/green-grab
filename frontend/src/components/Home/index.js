@@ -9,11 +9,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
 
   const currentOffers = useSelector((state) => {
-    if (Array.isArray(state.offers.offers)) {
-      const reversedOffers = state.offers.offers.reverse();
-      console.log(reversedOffers, "reveresed Offers");
-      return reversedOffers;
-    }
+    return state.offers.offers;
   });
 
   useEffect(async () => {
@@ -26,8 +22,7 @@ const HomePage = () => {
       {currentOffers &&
         currentOffers.map((offer) => {
           return <Offer theOffer={offer} />;
-        })
-      }
+        })}
     </div>
   );
 };
