@@ -22,10 +22,20 @@ function SearchBar() {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
     history.push("/search");
+    setSearchLocation("");
   };
 
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
+    console.log("searchLocation", searchLocation);
+    dispatch(searchActions.search(searchLocation))
+      // .then((res) => {
+      //   console.log(res);
+      // })
+      .catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+    history.push("/search");
   };
 
   return (
