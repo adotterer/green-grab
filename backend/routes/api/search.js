@@ -6,10 +6,46 @@ const { createLocationObj } = require("../../utils/geolocator");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 
+router.get("/", async (req, res, next) => {
+  const { term, location } = req.query;
+  console.log("Why doesn't this work", term);
+  const locObj = await createLocationObj(location);
+  const { latitude, longitude } = locObj;
+  try {
+    const queryResults = await Item.findAll({
+      where: {
+        itemName: {
+          [Op.like]: `%${term}%`,
+        },
+        // description: { [Op.like]: `%${term}%` },
+      },
+      include: [
+        { model: Image },
+        {
+          model: User,
+          include: {
+            model: Location,
+            where: {
+              latitude: { [Op.between]: [latitude - 2, latitude + 2] },
+              longitude: { [Op.between]: [longitude - 2, longitude + 2] },
+            },
+          },
+        },
+      ],
+    });
+    console.log("queryResults", queryResults);
+    res.json({ queryResults });
+  } catch (e) {
+    next(e);
+  }
+});
+
 router.get("/location", async (req, res, next) => {
   const { location } = req.query;
   const locObj = await createLocationObj(location);
   const { latitude, longitude } = locObj;
+  // Maybe this should just be querying for Items instead
+  // so I don't have to restructure the whole object
   try {
     const nearbyLocations = await Location.findAll({
       where: {

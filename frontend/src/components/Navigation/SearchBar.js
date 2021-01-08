@@ -8,6 +8,7 @@ function SearchBar() {
   const dispatch = useDispatch();
   const history = useHistory();
   const [searchLocation, setSearchLocation] = useState();
+  const [searchTerm, setSearchTerm] = useState();
 
   const [errors, setErrors] = useState([]);
 
@@ -16,8 +17,13 @@ function SearchBar() {
     dispatch(searchActions.search(searchLocation)).catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     });
+    dispatch(searchActions.searchByTerm(searchTerm, searchLocation)).catch(
+      (res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      }
+    );
     history.push("/search");
-    setSearchLocation("");
+    setSearchTerm("");
   };
 
   const loadSearchPage = (e) => {
@@ -31,7 +37,15 @@ function SearchBar() {
   return (
     <form onSubmit={handleSearch}>
       <div id="div__search">
-        <input class="input__search" type="text" placeholder="Search..." />
+        <input
+          class="input__search"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+          placeholder="Search..."
+        />
         <input
           class="input__location"
           value={searchLocation}

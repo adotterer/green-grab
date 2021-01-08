@@ -9,6 +9,17 @@ const setSearch = (results) => {
   };
 };
 
+export const searchByTerm = (searchTerm, searchLocation) => async (
+  dispatch
+) => {
+  console.log("hello from search thunk, this is line 14");
+  const response = await fetch(
+    `/api/search?term=${searchTerm}&location=${searchLocation}`
+  );
+  dispatch(setSearch(response.data.queryResults));
+  return response;
+};
+
 export const search = (searchLocation) => async (dispatch) => {
   const response = await fetch(
     `/api/search/location?location=${searchLocation}`
