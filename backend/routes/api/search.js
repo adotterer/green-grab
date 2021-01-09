@@ -12,7 +12,32 @@ router.get("/", async (req, res, next) => {
 
   try {
     let queryResults;
-    if (location && location != " ") {
+    if (location.length) {
+      // No location given
+      queryResults = await Item.findAll({
+        where: {
+          itemName: Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("itemName")),
+            "LIKE",
+            "%" + term + "%"
+          ),
+          // description: Sequelize.where(
+          //   Sequelize.fn("LOWER", Sequelize.col("description")),
+          //   "LIKE",
+          //   "%" + term + "%"
+          // ),
+        },
+        include: [
+          {
+            model: Image,
+          },
+          {
+            model: User,
+            include: { model: Location },
+          },
+        ],
+      });
+    } else if (location && location != " ") {
       const locObj = await createLocationObj(location);
       const { latitude, longitude } = locObj;
       console.log(" i have both term and location", term, location);
@@ -23,7 +48,11 @@ router.get("/", async (req, res, next) => {
             "LIKE",
             "%" + term + "%"
           ),
-          // description: { [Op.like]: `%${term}%` },
+          // description: Sequelize.where(
+          //   Sequelize.fn("LOWER", Sequelize.col("description")),
+          //   "LIKE",
+          //   "%" + term + "%"
+          // ),
         },
         include: [
           {
@@ -41,26 +70,6 @@ router.get("/", async (req, res, next) => {
       });
     } else {
       console.log("LINE43", term, location);
-
-      queryResults = await Item.findAll({
-        where: {
-          itemName: Sequelize.where(
-            Sequelize.fn("LOWER", Sequelize.col("itemName")),
-            "LIKE",
-            "%" + term + "%"
-          ),
-          // description: { [Op.iLike]: `%${term}%` },
-        },
-        include: [
-          {
-            model: Image,
-          },
-          {
-            model: User,
-            include: { model: Location },
-          },
-        ],
-      });
     }
 
     console.log("queryResults --->", queryResults);

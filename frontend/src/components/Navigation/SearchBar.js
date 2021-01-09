@@ -14,27 +14,27 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+
+    e.preventDefault();
     if (!searchTerm) {
       dispatch(searchActions.search(searchLocation)).catch((res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
       });
     } else {
-      dispatch(searchActions.search(searchLocation)).catch((res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      });
+      dispatch(searchActions.searchByTerm(searchTerm, searchLocation)).catch(
+        (res) => {
+          if (res.data && res.data.errors) setErrors(res.data.errors);
+        }
+      );
     }
 
-    dispatch(searchActions.searchByTerm(searchTerm, searchLocation)).catch(
-      (res) => {
-        if (res.data && res.data.errors) setErrors(res.data.errors);
-      }
-    );
     history.push("/search");
     setSearchTerm("");
   };
 
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
+
     dispatch(searchActions.search(searchLocation)).catch((res) => {
       if (res.data && res.data.errors) setErrors(res.data.errors);
     });
@@ -51,6 +51,11 @@ function SearchBar() {
           onChange={(e) => {
             history.push("/search");
             setSearchTerm(e.target.value);
+            dispatch(
+              searchActions.searchByTerm(searchTerm, searchLocation)
+            ).catch((res) => {
+              if (res.data && res.data.errors) setErrors(res.data.errors);
+            });
           }}
           placeholder="Search..."
         />
