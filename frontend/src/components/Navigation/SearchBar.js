@@ -14,9 +14,16 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    dispatch(searchActions.search(searchLocation)).catch((res) => {
-      if (res.data && res.data.errors) setErrors(res.data.errors);
-    });
+    if (!searchTerm) {
+      dispatch(searchActions.search(searchLocation)).catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+    } else {
+      dispatch(searchActions.search(searchLocation)).catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+    }
+
     dispatch(searchActions.searchByTerm(searchTerm, searchLocation)).catch(
       (res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
@@ -28,9 +35,9 @@ function SearchBar() {
 
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
-    // dispatch(searchActions.search(searchLocation)).catch((res) => {
-    //   if (res.data && res.data.errors) setErrors(res.data.errors);
-    // });
+    dispatch(searchActions.search(searchLocation)).catch((res) => {
+      if (res.data && res.data.errors) setErrors(res.data.errors);
+    });
     history.push("/search");
   };
 
@@ -42,6 +49,7 @@ function SearchBar() {
           type="text"
           value={searchTerm}
           onChange={(e) => {
+            history.push("/search");
             setSearchTerm(e.target.value);
           }}
           placeholder="Search..."

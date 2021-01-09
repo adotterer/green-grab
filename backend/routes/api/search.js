@@ -8,22 +8,24 @@ const Op = Sequelize.Op;
 
 router.get("/", async (req, res, next) => {
   const { term, location } = req.query;
-  console.log("Why doesn't this work ---> location: ", !!location);
+  // console.log("Why doesn't this work ---> location: ", !!location);
 
   try {
     let queryResults;
     if (location && location != " ") {
       const locObj = await createLocationObj(location);
       const { latitude, longitude } = locObj;
+      console.log(" i have both term and location", term, location);
       queryResults = await Item.findAll({
         where: {
-          itemName: {
-            [Op.like]: `%${term}%`,
-          },
+          itemName: Sequelize.where(
+            Sequelize.fn("LOWER", Sequelize.col("itemName")),
+            "LIKE",
+            "%" + term + "%"
+          ),
           // description: { [Op.like]: `%${term}%` },
         },
         include: [
-          { model: Image },
           {
             model: User,
             include: {
@@ -34,9 +36,12 @@ router.get("/", async (req, res, next) => {
               },
             },
           },
+          { model: Image },
         ],
       });
     } else {
+      console.log("LINE43", term, location);
+
       queryResults = await Item.findAll({
         where: {
           itemName: Sequelize.where(
@@ -47,18 +52,18 @@ router.get("/", async (req, res, next) => {
           // description: { [Op.iLike]: `%${term}%` },
         },
         include: [
-          { model: Image },
+          {
+            model: Image,
+          },
           {
             model: User,
-            include: {
-              model: Location,
-            },
+            include: { model: Location },
           },
         ],
       });
     }
 
-    console.log("queryResults", queryResults);
+    console.log("queryResults --->", queryResults);
     res.json({ queryResults });
   } catch (e) {
     next(e);

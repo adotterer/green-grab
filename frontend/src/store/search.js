@@ -37,6 +37,7 @@ const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_SEARCH:
       newState = Object.assign({}, state);
+
       newState.nearbyItems = action.payload;
       return newState;
     default:
