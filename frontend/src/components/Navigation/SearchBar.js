@@ -14,8 +14,6 @@ function SearchBar() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-
-    e.preventDefault();
     if (!searchTerm) {
       dispatch(searchActions.search(searchLocation)).catch((res) => {
         if (res.data && res.data.errors) setErrors(res.data.errors);
@@ -35,9 +33,17 @@ function SearchBar() {
   const loadSearchPage = (e) => {
     setSearchLocation(e.target.value);
 
-    dispatch(searchActions.search(searchLocation)).catch((res) => {
-      if (res.data && res.data.errors) setErrors(res.data.errors);
-    });
+    if (!searchTerm) {
+      dispatch(searchActions.search(searchLocation)).catch((res) => {
+        if (res.data && res.data.errors) setErrors(res.data.errors);
+      });
+    } else {
+      dispatch(searchActions.searchByTerm(searchTerm, searchLocation)).catch(
+        (res) => {
+          if (res.data && res.data.errors) setErrors(res.data.errors);
+        }
+      );
+    }
     history.push("/search");
   };
 

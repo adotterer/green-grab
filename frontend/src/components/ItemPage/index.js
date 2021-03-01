@@ -40,10 +40,10 @@ function ItemPage() {
           <div>
             <img id="img__primary" src={currentOffer.Images[0].URL} />
             <h1>{currentOffer.itemName}</h1>
-            <h3>
+            <h2>
               {!currentOffer.price && "FREE"}
-              {currentOffer.price}
-            </h3>
+              {currentOffer.price && "$" + currentOffer.price}
+            </h2>
             <p className="p__offer-from">
               offer from
               <NavLink className="a__username" exact to={`/profile/${userId}`}>

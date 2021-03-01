@@ -69,10 +69,10 @@ router.get("/", async (req, res, next) => {
         ],
       });
     } else {
-      console.log("LINE43", term, location);
+      // console.log("LINE43", term, location);
     }
 
-    console.log("queryResults --->", queryResults);
+    // console.log("queryResults --->", queryResults);
     res.json({ queryResults });
   } catch (e) {
     next(e);
