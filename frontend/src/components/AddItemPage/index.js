@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import * as itemActions from "../../store/items";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -50,7 +50,7 @@ function AddItemPage() {
 
   return (
     <div className="div__container">
-      {!sessionUser && (
+      {!sessionUser && !showModal && (
         <Modal onClose={() => setShowModal(false)}>
           <LoginForm />
         </Modal>

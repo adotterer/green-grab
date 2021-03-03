@@ -11,6 +11,7 @@ import ProfilePage from "./components/ProfilePage";
 import EditItemPage from "./components/EditItemPage";
 import SearchPage from "./components/SearchPage";
 import * as sessionActions from "./store/session";
+import "./index.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
+
       {isLoaded && (
         <Switch>
           <Route exact path="/">
@@ -40,6 +42,7 @@ function App() {
             <Helmet>
               <title>GreenGrab - Offer Item</title>
             </Helmet>
+
             <AddItemPage />
           </Route>
           <Route exact path="/items/:userId/:itemId">

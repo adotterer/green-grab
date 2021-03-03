@@ -17,7 +17,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="div__container" id="item-board">
+    <div className="div__container item-board">
       {!currentOffers && <h3>Loading...........</h3>}
       {currentOffers &&
         currentOffers.map((offer) => {

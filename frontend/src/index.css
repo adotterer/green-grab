@@ -15,7 +15,7 @@ a {
   position: relative;
   top: 80px;
   background-color: white;
-  padding-top: 20px;
+  padding: 20px 10vw 20px 10vw;
   width: 45;
   margin: 0 auto;
   font-family: Lato, sans-serif;
@@ -24,4 +24,8 @@ a {
 .input__placeholder__whitebg::placeholder {
   color: rgb(131, 131, 131);
   font-size: 0.8em;
+}
+
+#div__content_container {
+  border: 1px solid red;
 }
